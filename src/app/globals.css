@@ -1,26 +1,54 @@
 @import "tailwindcss";
+@import "antd/dist/reset.css";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fcf9f2;
+  --foreground: #1c1c18;
+  --color-primary: #003527;
+  --color-primary-container: #064e3b;
+  --color-secondary: #735c00;
+  --color-tertiary: #4c2300;
+  --color-surface: #fcf9f2;
+  --color-surface-container-low: #f6f2e9;
+  --color-surface-container-lowest: #fffcf6;
+  --color-outline-variant: #7a7a6e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-plus-jakarta-sans);
+  --font-serif: var(--font-noto-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-noto-serif), Georgia, serif;
+  color: #1c1c18;
+}
+
+.btn-primary-luxury {
+  background-image: radial-gradient(circle at 30% 20%, #064e3b, #003527);
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+.glass-surface {
+  background-color: rgba(252, 249, 242, 0.6);
+  backdrop-filter: blur(20px);
+}
+
+.botanical-shadow {
+  box-shadow: 0 20px 40px rgba(0, 53, 39, 0.06);
 }
