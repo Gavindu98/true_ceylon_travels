@@ -30,11 +30,11 @@ export default function RootLayout({
       lang="en"
       className={`${plusJakartaSans.variable} ${notoSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[var(--color-surface)] text-[var(--foreground)]">
+      <body className="min-h-screen flex flex-col bg-[var(--color-surface)] text-[var(--foreground)]">
         <UiProvider>
           <SiteHeader />
-          {children}
-          <footer className="mt-auto border-t border-slate-200 bg-slate-900 text-slate-200">
+          <div className="flex-1 flex flex-col">{children}</div>
+          <footer className="border-t border-slate-200 bg-slate-900 text-slate-200">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-4 lg:px-8">
             <div>
               <h3 className="text-lg font-bold text-white">True Ceylon Travels</h3>
@@ -68,8 +68,8 @@ export default function RootLayout({
               <h4 className="text-sm font-semibold uppercase tracking-wide text-white">Contact</h4>
               <div className="mt-3 space-y-2 text-sm">
                 <p>
-                  <a href="tel:+94776025212" className="hover:text-white">
-                    +94 77 602 5212
+                  <a href="tel:+94763809067" className="hover:text-white">
+                    Call +94 76 380 9067
                   </a>
                 </p>
                 <p>
@@ -78,7 +78,7 @@ export default function RootLayout({
                   </a>
                 </p>
                 <p>
-                  <a href="https://wa.me/94776025212" className="hover:text-white">
+                  <a href="https://wa.me/94763809067" className="hover:text-white">
                     WhatsApp Chat
                   </a>
                 </p>

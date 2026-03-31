@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useEffect, useState } from "react";
 
@@ -36,9 +37,17 @@ const slides: Slide[] = [
 export default function HeroCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const goToNextSlide = () => {
+    setActiveIndex((prev) => (prev + 1) % slides.length);
+  };
+
+  const goToPreviousSlide = () => {
+    setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % slides.length);
+      goToNextSlide();
     }, 5000);
 
     return () => clearInterval(timer);
@@ -47,11 +56,27 @@ export default function HeroCarousel() {
   const currentSlide = slides[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-[#0a3a3a] text-white">
+    <section className="relative h-[calc(100dvh-var(--header-height))] overflow-hidden bg-[#0a3a3a] text-white">
       <Image src={currentSlide.image} alt={currentSlide.title} fill priority className="object-cover opacity-65" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#072d2d]/95 via-[#0d5555]/80 to-transparent" />
+      <button
+        type="button"
+        aria-label="Previous slide"
+        onClick={goToPreviousSlide}
+        className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50"
+      >
+        <LeftOutlined />
+      </button>
+      <button
+        type="button"
+        aria-label="Next slide"
+        onClick={goToNextSlide}
+        className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50"
+      >
+        <RightOutlined />
+      </button>
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28">
+      <div className="relative mx-auto grid h-full max-w-6xl items-center gap-10 px-6 py-8 lg:grid-cols-2 lg:px-8">
         <div>
           <p className="mb-4 inline-block rounded-full bg-white/15 px-4 py-1 text-sm font-medium">{currentSlide.badge}</p>
           <h1 className="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">{currentSlide.title}</h1>
