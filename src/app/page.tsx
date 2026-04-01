@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
 import HomeMemories from "@/components/home-memories";
@@ -75,7 +76,9 @@ export default function Home() {
               key={tour.title}
               className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4]"
             >
-              <div className="h-28 w-full bg-gradient-to-r from-[#0f766e] via-[#115e59] to-[#4c2300]" />
+              <div className="relative h-44 w-full">
+                <Image src={tour.image} alt={tour.title} fill className="object-cover" />
+              </div>
               <div className="space-y-3 p-6">
                 <p className="text-sm font-medium text-teal-700">{tour.area}</p>
                 <h3 className="text-xl font-bold text-slate-900">{tour.title}</h3>

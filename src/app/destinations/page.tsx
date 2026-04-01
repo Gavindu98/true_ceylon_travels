@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { destinations } from "@/data/destinations";
 
@@ -18,7 +19,9 @@ export default function DestinationsPage() {
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {destinations.map((item) => (
             <article key={item.title} className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4]">
-              <div className="h-28 w-full bg-gradient-to-r from-[#0f766e] via-[#115e59] to-[#4c2300]" />
+              <div className="relative h-44 w-full">
+                <Image src={item.image} alt={item.title} fill className="object-cover" />
+              </div>
               <div className="space-y-3 p-6">
                 <p className="text-sm font-medium text-teal-700">{item.area}</p>
                 <h2 className="text-xl font-bold text-slate-900">{item.title}</h2>

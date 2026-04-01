@@ -26,7 +26,7 @@ export const destinations: DestinationItem[] = [
     reviews: 128,
     duration: "Full Day",
     bestFor: "Cultural Triangle Tours",
-    image: "/images/hero-sigiriya.svg",
+    image: "/images/destination/sigiriya.png",
     highlights: "Sigiriya Rock Fortress, village safari experience, and cultural triangle sightseeing.",
     description:
       "Visit Sigiriya as a core stop in cultural routes with rock fortress views, nearby village experiences, and easy connections to Kandy.",
@@ -52,7 +52,7 @@ export const destinations: DestinationItem[] = [
     reviews: 89,
     duration: "Full Day",
     bestFor: "Safari Routes",
-    image: "/images/hero-yala.svg",
+    image: "/images/destination/yala_national_park.png",
     highlights: "Yala jeep safari, wildlife sightings, and nature-focused travel.",
     description:
       "Experience Sri Lanka's most famous safari park with opportunities to spot leopards, elephants, and rich birdlife.",
@@ -69,7 +69,7 @@ export const destinations: DestinationItem[] = [
     reviews: 156,
     duration: "2 Days",
     bestFor: "Hill Country Tours",
-    image: "/images/hero-lanka.svg",
+    image: "/images/destination/ella.png",
     highlights: "Nine Arch Bridge, Little Adam's Peak, and scenic hill-country views.",
     description:
       "Unwind in cool mountain air with tea country landscapes, scenic train moments, and easy hikes for all travel styles.",
@@ -87,7 +87,7 @@ export const destinations: DestinationItem[] = [
     reviews: 128,
     duration: "2 Days",
     bestFor: "South Coast Tours",
-    image: "/images/hero-mirissa.svg",
+    image: "/images/destination/mirissa.png",
     highlights: "Beach relaxation, whale watching (seasonal), and south coast stays.",
     description:
       "Enjoy tropical beach life, optional whale watching, and a relaxing south-coast atmosphere with sunset vibes.",
@@ -104,7 +104,7 @@ export const destinations: DestinationItem[] = [
     reviews: 74,
     duration: "Full Day",
     bestFor: "Culture + Hill Country",
-    image: "/images/hero-sigiriya.svg",
+    image: "/images/destination/kandy.png",
     highlights: "Temple of the Tooth, cultural dance show, and city heritage.",
     description:
       "Discover Sri Lanka's cultural heart with sacred temples, heritage streets, and vibrant traditional performances.",
@@ -129,7 +129,7 @@ export const destinations: DestinationItem[] = [
     reviews: 96,
     duration: "Half Day",
     bestFor: "South Coast + Fort",
-    image: "/images/hero-mirissa.svg",
+    image: "/images/destination/galle.png",
     highlights: "Dutch fort sunset, beach + history combination, and coastal route.",
     description:
       "Walk colonial-era lanes, enjoy coastal cafes, and end your day with ocean sunsets from Galle's historic fort walls.",
@@ -146,7 +146,7 @@ export const destinations: DestinationItem[] = [
     reviews: 85,
     duration: "Full Day",
     bestFor: "Tea Country",
-    image: "/images/hero-lanka.svg",
+    image: "/images/destination/nuwara_eliya.png",
     highlights: "Tea plantations, waterfalls, and cool hill-country climate.",
     description:
       "Visit tea estates and highland viewpoints in Sri Lanka's scenic central region with relaxed pacing and photo stops.",
@@ -164,7 +164,7 @@ export const destinations: DestinationItem[] = [
     reviews: 101,
     duration: "Full Day",
     bestFor: "Ancient Heritage",
-    image: "/images/hero-sigiriya.svg",
+    image: "/images/destination/anuradhapura.png",
     highlights: "Ancient stupas, sacred bodhi tree, and archeological treasures.",
     description:
       "Explore one of the world's oldest continuously inhabited cities and connect with Sri Lanka's sacred Buddhist heritage.",
