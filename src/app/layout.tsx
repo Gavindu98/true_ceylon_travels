@@ -68,8 +68,8 @@ export default function RootLayout({
               <h4 className="text-sm font-semibold uppercase tracking-wide text-white">Contact</h4>
               <div className="mt-3 space-y-2 text-sm">
                 <p>
-                  <a href="tel:+94763809067" className="hover:text-white">
-                    Call +94 76 380 9067
+                  <a href="tel:+94707366627" className="hover:text-white">
+                    Call +94 707 366 627
                   </a>
                 </p>
                 <p>
@@ -78,7 +78,7 @@ export default function RootLayout({
                   </a>
                 </p>
                 <p>
-                  <a href="https://wa.me/94763809067" className="hover:text-white">
+                  <a href="https://wa.me/94707366627" className="hover:text-white">
                     WhatsApp Chat
                   </a>
                 </p>

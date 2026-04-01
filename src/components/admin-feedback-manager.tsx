@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { DatePicker, Tabs } from "antd";
 import dayjs from "dayjs";
 import type { FeedbackRecord } from "@/types/feedback";
@@ -30,6 +30,8 @@ export default function AdminFeedbackManager() {
   const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [activeTab, setActiveTab] = useState("list");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
   const isEditing = useMemo(() => editingId !== null, [editingId]);
 
   const loadFeedbacks = async () => {
@@ -40,7 +42,6 @@ export default function AdminFeedbackManager() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadFeedbacks();
   }, []);
 
@@ -57,30 +58,39 @@ export default function AdminFeedbackManager() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     let uploadedImageUrl = form.profile_pic_url;
 
-    if (selectedImageFile) {
-      const fd = new FormData();
-      fd.append("file", selectedImageFile);
-      const uploadRes = await fetch("/api/feedback/upload", { method: "POST", body: fd });
-      if (!uploadRes.ok) return;
-      const uploadData: { publicUrl: string } = await uploadRes.json();
-      uploadedImageUrl = uploadData.publicUrl;
+    try {
+      if (selectedImageFile) {
+        const fd = new FormData();
+        fd.append("file", selectedImageFile);
+        const uploadRes = await fetch("/api/feedback/upload", { method: "POST", body: fd });
+        if (!uploadRes.ok) return;
+        const uploadData: { publicUrl: string } = await uploadRes.json();
+        uploadedImageUrl = uploadData.publicUrl;
+      }
+
+      const payload = { ...form, profile_pic_url: uploadedImageUrl };
+      const res = await fetch(isEditing ? `/api/feedback/${editingId}` : "/api/feedback", {
+        method: isEditing ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) return;
+      setForm(initialForm);
+      setEditingId(null);
+      setSelectedImageFile(null);
+      setPreviewUrl("");
+      if (imageInputRef.current) {
+        imageInputRef.current.value = "";
+      }
+      await loadFeedbacks();
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const payload = { ...form, profile_pic_url: uploadedImageUrl };
-    const res = await fetch(isEditing ? `/api/feedback/${editingId}` : "/api/feedback", {
-      method: isEditing ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) return;
-    setForm(initialForm);
-    setEditingId(null);
-    setSelectedImageFile(null);
-    setPreviewUrl("");
-    await loadFeedbacks();
   };
 
   const handleEdit = (item: FeedbackRecord) => {
@@ -176,7 +186,7 @@ export default function AdminFeedbackManager() {
                     <DatePicker
                       value={form.feedback_date ? dayjs(form.feedback_date) : null}
                       onChange={(value) => setForm((prev) => ({ ...prev, feedback_date: value ? value.format("YYYY-MM-DD") : "" }))}
-                      className="!w-full"
+                      className="!h-[46px] !w-full"
                     />
                   </div>
                 </div>
@@ -214,18 +224,28 @@ export default function AdminFeedbackManager() {
 
                 <div>
                   <label className="mb-1 block text-sm font-medium text-slate-700">Client Profile Picture</label>
-                  <input type="file" accept="image/*" onChange={(e) => handleFileChange(e.target.files?.[0] ?? null)} className="w-full rounded-lg border border-slate-300 px-4 py-2.5" />
+                  <input
+                    ref={imageInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleFileChange(e.target.files?.[0] ?? null)}
+                    className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
+                  />
                   {previewUrl ? (
-                    <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
+                    <div className="mt-3 h-24 w-24 overflow-hidden rounded-full border border-slate-200">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={previewUrl} alt="Feedback preview" className="h-44 w-full object-cover" />
+                      <img src={previewUrl} alt="Feedback preview" className="h-full w-full object-cover" />
                     </div>
                   ) : null}
                 </div>
 
                 <div className="flex gap-3">
-                  <button type="submit" className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white">
-                    {isEditing ? "Update Feedback" : "Save Feedback"}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {isSubmitting ? "Saving..." : isEditing ? "Update Feedback" : "Save Feedback"}
                   </button>
                   {isEditing ? (
                     <button
