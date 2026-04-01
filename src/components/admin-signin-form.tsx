@@ -39,22 +39,40 @@ export default function AdminSigninForm() {
   };
 
   return (
-    <form className="space-y-4" onSubmit={onSubmit}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
-      />
-      <button type="submit" disabled={loading} className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white">
+    <form className="space-y-6" onSubmit={onSubmit}>
+      <div className="space-y-2">
+        <label htmlFor="admin-email" className="block text-sm font-medium text-slate-700">
+          Email Address
+        </label>
+        <input
+          id="admin-email"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="admin-password" className="block text-sm font-medium text-slate-700">
+          Password
+        </label>
+        <input
+          id="admin-password"
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="mt-1 rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white"
+      >
         {loading ? "Signing in..." : "Sign In"}
       </button>
       {message ? <p className="text-sm text-emerald-700">{message}</p> : null}

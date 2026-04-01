@@ -8,10 +8,12 @@ export default function AdminAuthActions() {
   return (
     <Space wrap>
       <Link href="/admin/signup">
-        <Button icon={<UserAddOutlined />}>Sign Up</Button>
+        <Button icon={<UserAddOutlined />} className="!text-[var(--color-primary)] !border-[var(--color-primary)]">
+          Sign Up
+        </Button>
       </Link>
       <Link href="/admin/signin">
-        <Button type="primary" icon={<LoginOutlined />}>
+        <Button type="primary" icon={<LoginOutlined />} className="!text-white">
           Sign In
         </Button>
       </Link>

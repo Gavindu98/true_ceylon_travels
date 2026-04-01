@@ -11,13 +11,13 @@ export default function AdminPage() {
         <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row">
           <Link
             href="/admin/signin"
-            className="flex-1 rounded-2xl bg-[var(--color-primary)] px-8 py-5 text-lg font-semibold text-white transition hover:opacity-95"
+            className="flex-1 rounded-2xl bg-[var(--color-primary)] px-8 py-5 text-lg font-semibold !text-white transition hover:bg-[#064e3b]"
           >
-            Admin
+            Sign In
           </Link>
           <Link
             href="/admin/signup"
-            className="flex-1 rounded-2xl border border-[var(--color-primary)] px-8 py-5 text-lg font-semibold text-[var(--color-primary)] transition hover:bg-[var(--color-surface-container-low)]"
+            className="flex-1 rounded-2xl border border-[var(--color-primary)] bg-[var(--color-primary-container)] px-8 py-5 text-lg font-semibold !text-white transition hover:opacity-95"
           >
             Sign Up
           </Link>

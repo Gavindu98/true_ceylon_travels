@@ -40,30 +40,55 @@ export default function AdminSignupForm() {
   };
 
   return (
-    <form className="space-y-4" onSubmit={onSubmit}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
-      />
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        value={confirmPassword}
-        onChange={(e) => setConfirmPassword(e.target.value)}
-        className="w-full rounded-lg border border-slate-300 px-4 py-2.5"
-      />
-      <button type="submit" disabled={loading} className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white">
-        {loading ? "Creating..." : "Create User"}
+    <form className="space-y-6" onSubmit={onSubmit}>
+      <div className="space-y-2">
+        <label htmlFor="signup-email" className="block text-sm font-medium text-slate-700">
+          Email Address
+        </label>
+        <input
+          id="signup-email"
+          type="email"
+          placeholder="you@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="signup-password" className="block text-sm font-medium text-slate-700">
+          Password
+        </label>
+        <input
+          id="signup-password"
+          type="password"
+          placeholder="Create a password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+        />
+      </div>
+
+      <div className="space-y-2">
+        <label htmlFor="signup-confirm-password" className="block text-sm font-medium text-slate-700">
+          Confirm Password
+        </label>
+        <input
+          id="signup-confirm-password"
+          type="password"
+          placeholder="Re-enter password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 px-4 py-3"
+        />
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="mt-1 rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white"
+      >
+        {loading ? "Creating Account..." : "Sign Up"}
       </button>
       {message ? <p className="text-sm text-emerald-700">{message}</p> : null}
       {error ? <p className="text-sm text-rose-600">{error}</p> : null}
