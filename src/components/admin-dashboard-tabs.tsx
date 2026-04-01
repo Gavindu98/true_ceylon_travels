@@ -2,6 +2,7 @@
 
 import { Tabs } from "antd";
 import AdminMemoryManager from "@/components/admin-memory-manager";
+import AdminContactsList from "@/components/admin-contacts-list";
 
 export default function AdminDashboardTabs() {
   return (
@@ -23,6 +24,11 @@ export default function AdminDashboardTabs() {
           key: "memories",
           label: "Memories",
           children: <AdminMemoryManager />,
+        },
+        {
+          key: "contacts",
+          label: "Contacts",
+          children: <AdminContactsList />,
         },
       ]}
     />
