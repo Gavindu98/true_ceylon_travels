@@ -2,16 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
 import HomeMemories from "@/components/home-memories";
+import { destinations } from "@/data/destinations";
 
 export default function Home() {
-  const destinations = [
-    { title: "Sigiriya Rock Fortress", location: "Cultural Triangle", rating: "4.9", reviews: 128, image: "/images/hero-sigiriya.svg" },
-    { title: "Yala Safari Adventure", location: "Southern Wild Coast", rating: "4.8", reviews: 89, image: "/images/hero-yala.svg" },
-    { title: "Ella Scenic Highlands", location: "Hill Country", rating: "5.0", reviews: 156, image: "/images/hero-lanka.svg" },
-    { title: "Mirissa Whale Coast", location: "South Coast", rating: "4.9", reviews: 128, image: "/images/hero-mirissa.svg" },
-    { title: "Kandy Heritage Walk", location: "Central Province", rating: "4.7", reviews: 74, image: "/images/hero-sigiriya.svg" },
-    { title: "Galle Fort & Beaches", location: "Southwest Coast", rating: "4.8", reviews: 96, image: "/images/hero-mirissa.svg" },
-  ];
+  const homeDestinations = destinations.slice(0, 6);
 
   const stats = [
     { label: "Happy Travelers", value: "1,000+", icon: "😊", note: "Trusted by global guests" },
@@ -77,7 +71,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {destinations.map((tour) => (
+          {homeDestinations.map((tour) => (
             <article
               key={tour.title}
               className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4] transition duration-300 hover:-translate-y-1 hover:shadow-md"
@@ -94,7 +88,7 @@ export default function Home() {
                   <p className="text-slate-500">{tour.reviews} reviews</p>
                 </div>
                 <Link
-                  href="/destinations"
+                  href={`/destinations/${tour.slug}`}
                   className="inline-flex rounded-full border border-[#0f766e] px-4 py-2 text-sm font-semibold text-[#0f766e] transition hover:bg-teal-50"
                 >
                   More Details
