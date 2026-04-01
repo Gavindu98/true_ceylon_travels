@@ -41,10 +41,10 @@ export default function MemoryCards({ memories, onEdit, onDelete }: Props) {
               />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-              <h3 className="text-lg font-semibold">{memory.title || "Untitled Memory"}</h3>
-              <p className="mt-1 text-sm text-white/90">{memory.place || "Sri Lanka"}</p>
-              {memory.description ? <p className="mt-2 line-clamp-2 text-xs text-white/90">{memory.description}</p> : null}
+            <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 !text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+              <h3 className="text-lg font-semibold !text-white">{memory.title || "Untitled Memory"}</h3>
+              <p className="mt-1 text-sm !text-white">{memory.place || "Sri Lanka"}</p>
+              {memory.description ? <p className="mt-2 line-clamp-2 text-xs !text-white">{memory.description}</p> : null}
             </div>
           </div>
           {(onEdit || onDelete) && (

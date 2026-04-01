@@ -133,15 +133,25 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
-        <div className="rounded-3xl bg-gradient-to-r from-[#0f766e] to-[#115e59] p-8 text-white sm:p-10">
-          <h2 className="text-3xl font-bold">Why Travel with True Ceylon Travels?</h2>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <p className="rounded-xl bg-white/10 p-4">Licensed and experienced local guides.</p>
-            <p className="rounded-xl bg-white/10 p-4">Transparent pricing and no hidden fees.</p>
-            <p className="rounded-xl bg-white/10 p-4">Flexible private and group tour plans.</p>
-            <p className="rounded-xl bg-white/10 p-4">Fast support before and during your trip.</p>
-            <p className="rounded-xl bg-white/10 p-4">Culture-rich itineraries with hidden gems.</p>
-            <p className="rounded-xl bg-white/10 p-4">Family-friendly and couple-friendly experiences.</p>
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#073f37] via-[#0d5a4f] to-[#4c2300] p-8 text-white shadow-xl ring-1 ring-white/15 sm:p-10">
+          <div className="pointer-events-none absolute -left-10 -top-10 h-44 w-44 rounded-full bg-white/10 blur-2xl" />
+          <div className="pointer-events-none absolute -bottom-16 -right-10 h-56 w-56 rounded-full bg-amber-300/20 blur-3xl" />
+
+          <p className="relative text-xs font-semibold uppercase tracking-[0.12em] text-amber-200">True Ceylon Promise</p>
+          <h2 className="relative mt-2 text-3xl font-bold text-[var(--color-secondary)] sm:text-4xl">
+            Why Travel with True Ceylon Travels?
+          </h2>
+          <p className="relative mt-3 max-w-2xl text-sm text-white/85 sm:text-base">
+            Experience Sri Lanka with premium comfort, clear communication, and routes designed for unforgettable moments.
+          </p>
+
+          <div className="relative mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Licensed and experienced local guides.</p>
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Transparent pricing and no hidden fees.</p>
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Flexible private and group tour plans.</p>
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Fast support before and during your trip.</p>
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Culture-rich itineraries with hidden gems.</p>
+            <p className="rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm">Family-friendly and couple-friendly experiences.</p>
           </div>
         </div>
       </section>

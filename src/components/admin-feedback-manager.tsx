@@ -224,7 +224,7 @@ export default function AdminFeedbackManager() {
                 </div>
 
                 <div className="flex gap-3">
-                  <button type="submit" className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white">
+                  <button type="submit" className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white">
                     {isEditing ? "Update Feedback" : "Save Feedback"}
                   </button>
                   {isEditing ? (

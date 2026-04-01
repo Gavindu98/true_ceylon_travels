@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Tabs } from "antd";
 import MemoryCards from "@/components/memory-cards";
 import type { MemoryRecord } from "@/types/memory";
@@ -30,6 +30,8 @@ export default function AdminMemoryManager() {
   const [selectedImageFile, setSelectedImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [activeTab, setActiveTab] = useState("list");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const imageInputRef = useRef<HTMLInputElement | null>(null);
   const isEditing = useMemo(() => editingId !== null, [editingId]);
 
   const loadMemories = async () => {
@@ -40,7 +42,6 @@ export default function AdminMemoryManager() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     void loadMemories();
   }, []);
 
@@ -60,36 +61,46 @@ export default function AdminMemoryManager() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     let uploadedImageUrl = form.url;
 
-    if (selectedImageFile) {
-      const fileFormData = new FormData();
-      fileFormData.append("file", selectedImageFile);
+    try {
+      if (selectedImageFile) {
+        const fileFormData = new FormData();
+        fileFormData.append("file", selectedImageFile);
 
-      const uploadRes = await fetch("/api/memories/upload", {
-        method: "POST",
-        body: fileFormData,
+        const uploadRes = await fetch("/api/memories/upload", {
+          method: "POST",
+          body: fileFormData,
+        });
+
+        if (!uploadRes.ok) return;
+        const uploadData: { publicUrl: string } = await uploadRes.json();
+        uploadedImageUrl = uploadData.publicUrl;
+      }
+
+      const payload = { ...form, url: uploadedImageUrl };
+
+      const res = await fetch(isEditing ? `/api/memories/${editingId}` : "/api/memories", {
+        method: isEditing ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      if (!uploadRes.ok) return;
-      const uploadData: { publicUrl: string } = await uploadRes.json();
-      uploadedImageUrl = uploadData.publicUrl;
+      if (!res.ok) return;
+
+      setForm(initialForm);
+      setEditingId(null);
+      setSelectedImageFile(null);
+      setPreviewUrl("");
+      if (imageInputRef.current) {
+        imageInputRef.current.value = "";
+      }
+      await loadMemories();
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const payload = { ...form, url: uploadedImageUrl };
-
-    const res = await fetch(isEditing ? `/api/memories/${editingId}` : "/api/memories", {
-      method: isEditing ? "PUT" : "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) return;
-
-    setForm(initialForm);
-    setEditingId(null);
-    setSelectedImageFile(null);
-    await loadMemories();
   };
 
   const handleEdit = (memory: MemoryRecord) => {
@@ -210,6 +221,7 @@ export default function AdminMemoryManager() {
                       Memory Image
                     </label>
                     <input
+                      ref={imageInputRef}
                       id="image"
                       name="image"
                       type="file"
@@ -222,7 +234,7 @@ export default function AdminMemoryManager() {
                         ? `Selected: ${selectedImageFile.name}`
                         : form.url
                           ? "Current image is already uploaded. Choose a file to replace it."
-                          : "Choose an image to upload to Supabase Storage bucket: tour_memories."}
+                          : "Choose an image to upload to Storage."}
                     </p>
                     {previewUrl ? (
                       <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
@@ -233,8 +245,12 @@ export default function AdminMemoryManager() {
                   </div>
 
                   <div className="flex flex-wrap gap-3">
-                    <button type="submit" className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white">
-                      {isEditing ? "Update Memory" : "Save Memory"}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold !text-white disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {isSubmitting ? "Saving..." : isEditing ? "Update Memory" : "Save Memory"}
                     </button>
                     {isEditing ? (
                       <button
