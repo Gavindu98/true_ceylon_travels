@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AdminMemoryManager from "@/components/admin-memory-manager";
+import AdminDashboardTabs from "@/components/admin-dashboard-tabs";
 
 export default function AdminMemoryPage() {
   return (
@@ -7,10 +8,14 @@ export default function AdminMemoryPage() {
       <div className="mx-auto max-w-3xl space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-3xl font-bold">Add Memory</h1>
-          <Link href="/admin" className="text-sm font-semibold text-[var(--color-primary)] hover:underline">
-            Back to Admin
+          <Link href="/admin/dashboard" className="text-sm font-semibold text-[var(--color-primary)] hover:underline">
+            Back to Dashboard
           </Link>
         </div>
+
+        <section className="rounded-2xl bg-white p-6 shadow-sm">
+          <AdminDashboardTabs />
+        </section>
 
         <AdminMemoryManager />
       </div>

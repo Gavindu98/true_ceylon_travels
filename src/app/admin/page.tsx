@@ -1,42 +1,27 @@
-import AdminActions from "@/components/admin-actions";
+import Link from "next/link";
 
 export default function AdminPage() {
   return (
     <main className="min-h-screen bg-[var(--color-surface)] px-6 py-12 text-[var(--foreground)] lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-8">
-        <section className="rounded-2xl bg-white p-8 shadow-sm">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--color-secondary)]">Admin Panel</p>
-              <h1 className="mt-2 text-4xl font-bold">True Ceylon Travels Admin</h1>
-              <p className="mt-3 max-w-2xl text-slate-600">
-                Internal workspace for managing inquiries, tours, destinations, and website content.
-              </p>
-            </div>
-            <div className="shrink-0">
-              <AdminActions />
-            </div>
-          </div>
-        </section>
+      <div className="mx-auto flex max-w-3xl flex-col items-center rounded-2xl bg-white p-10 text-center shadow-sm">
+        <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--color-secondary)]">Admin Access</p>
+        <h1 className="mt-2 text-4xl font-bold">True Ceylon Travels</h1>
+        <p className="mt-3 max-w-xl text-slate-600">Continue as admin or create a new account.</p>
 
-        <section className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">New Inquiries</p>
-            <p className="mt-2 text-3xl font-bold text-[var(--color-primary)]">24</p>
-          </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Pending Follow-ups</p>
-            <p className="mt-2 text-3xl font-bold text-[var(--color-primary)]">8</p>
-          </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Active Tours</p>
-            <p className="mt-2 text-3xl font-bold text-[var(--color-primary)]">17</p>
-          </div>
-          <div className="rounded-2xl bg-white p-6 shadow-sm">
-            <p className="text-sm text-slate-500">Published Destinations</p>
-            <p className="mt-2 text-3xl font-bold text-[var(--color-primary)]">31</p>
-          </div>
-        </section>
+        <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row">
+          <Link
+            href="/admin/signin"
+            className="flex-1 rounded-2xl bg-[var(--color-primary)] px-8 py-5 text-lg font-semibold text-white transition hover:opacity-95"
+          >
+            Admin
+          </Link>
+          <Link
+            href="/admin/signup"
+            className="flex-1 rounded-2xl border border-[var(--color-primary)] px-8 py-5 text-lg font-semibold text-[var(--color-primary)] transition hover:bg-[var(--color-surface-container-low)]"
+          >
+            Sign Up
+          </Link>
+        </div>
       </div>
     </main>
   );
