@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
+import HomeMemories from "@/components/home-memories";
 
 export default function Home() {
   const destinations = [
@@ -35,15 +35,6 @@ export default function Home() {
       country: "Australia",
       text: "A perfect mix of culture, nature, and beach time. We discovered hidden places we never would have found ourselves.",
     },
-  ];
-
-  const memories = [
-    { title: "Amazing hill-country day with our USA guests", guest: "Guests from United States", image: "/images/hero-sigiriya.svg" },
-    { title: "Private safari smiles and unforgettable moments", guest: "Couple from Canada", image: "/images/hero-yala.svg" },
-    { title: "Sunset memories with a lovely UK family", guest: "Family from United Kingdom", image: "/images/hero-mirissa.svg" },
-    { title: "Tea-country journey with newlyweds", guest: "Honeymoon guests from Australia", image: "/images/hero-lanka.svg" },
-    { title: "Cultural triangle trip with repeat travelers", guest: "Guests from Singapore", image: "/images/hero-sigiriya.svg" },
-    { title: "South-coast food and beach day", guest: "Group from Germany", image: "/images/hero-mirissa.svg" },
   ];
 
   const faqs = [
@@ -124,33 +115,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-bold text-slate-900">Tour Memories</h2>
-            <p className="mt-2 text-slate-600">Real moments with our happy clients from around the world.</p>
-          </div>
-        </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {memories.map((memory) => (
-            <article key={`${memory.title}-${memory.guest}`} className="group relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4]">
-              <div className="relative h-64 w-full">
-                <Image
-                  src={memory.image}
-                  alt={`${memory.title} - ${memory.guest}`}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <h3 className="text-lg font-semibold">{memory.title}</h3>
-                  <p className="mt-1 text-sm text-white/90">{memory.guest}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <HomeMemories />
 
       <section className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
         <h2 className="text-3xl font-bold">What Travelers Say</h2>
