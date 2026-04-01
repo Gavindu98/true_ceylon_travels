@@ -189,6 +189,12 @@ export default async function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--color-secondary)]">Client Feedback</p>
             <h2 className="mt-2 text-3xl font-bold">What Travelers Say</h2>
           </div>
+          <Link
+            href="/feedbacks"
+            className="rounded-full border border-[#0f766e] px-4 py-2 text-xs font-semibold text-[#0f766e] transition hover:bg-teal-50 sm:text-sm"
+          >
+            View More Feedbacks
+          </Link>
         </div>
         <div className="mt-6 grid gap-5 md:grid-cols-3">
           {testimonials.length === 0 ? (
