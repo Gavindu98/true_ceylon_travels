@@ -14,10 +14,10 @@ export default function Home() {
   ];
 
   const stats = [
-    { label: "Happy Travelers", value: "1,000+" },
-    { label: "Tours Completed", value: "1,200+" },
-    { label: "Destinations", value: "150+" },
-    { label: "Average Rating", value: "4.9 / 5" },
+    { label: "Happy Travelers", value: "1,000+", icon: "😊", note: "Trusted by global guests" },
+    { label: "Tours Completed", value: "1,200+", icon: "🧭", note: "Curated island-wide journeys" },
+    { label: "Destinations", value: "150+", icon: "📍", note: "From coastlines to hill country" },
+    { label: "Average Rating", value: "4.9 / 5", icon: "⭐", note: "Consistent five-star service" },
   ];
 
   const testimonials = [
@@ -61,17 +61,6 @@ export default function Home() {
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
       <HeroCarousel />
 
-      <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {stats.map((item) => (
-            <div key={item.label} className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#d7e4e4]">
-              <p className="text-2xl font-bold text-[#0f766e]">{item.value}</p>
-              <p className="mt-1 text-sm text-slate-600">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section id="destinations" className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
@@ -112,6 +101,29 @@ export default function Home() {
                 </Link>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+        <div className="mb-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-secondary)]">Why Travelers Choose Us</p>
+          <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">Trusted Performance at Every Step</h2>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((item) => (
+            <div
+              key={item.label}
+              className="group rounded-2xl bg-white p-5 shadow-sm ring-1 ring-[#d7e4e4] transition duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-sm font-semibold text-slate-700">{item.label}</p>
+                <span className="rounded-full bg-[var(--color-surface-container-low)] px-2.5 py-1 text-sm">{item.icon}</span>
+              </div>
+              <p className="mt-3 text-3xl font-bold text-[#0f766e]">{item.value}</p>
+              <p className="mt-2 text-sm text-slate-600">{item.note}</p>
+              <div className="mt-3 h-1 w-12 rounded-full bg-[#0f766e]/20 transition-all duration-300 group-hover:w-20 group-hover:bg-[#0f766e]/40" />
+            </div>
           ))}
         </div>
       </section>
