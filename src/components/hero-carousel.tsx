@@ -56,7 +56,7 @@ export default function HeroCarousel() {
   const currentSlide = slides[activeIndex];
 
   return (
-    <section className="relative h-[calc(100dvh-var(--header-height))] overflow-hidden bg-[#0a3a3a] text-white">
+    <section className="relative h-dvh overflow-hidden bg-[#0a3a3a] text-white">
       <Image src={currentSlide.image} alt={currentSlide.title} fill priority className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/10" />
       <button

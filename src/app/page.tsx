@@ -47,7 +47,7 @@ export default async function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
+    <main className="min-h-screen bg-[var(--color-surface)] mt-[-7px] text-[var(--foreground)]">
       <HeroCarousel />
 
       <section id="destinations" className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
