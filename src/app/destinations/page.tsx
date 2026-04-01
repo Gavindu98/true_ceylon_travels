@@ -9,7 +9,7 @@ export default function DestinationsPage() {
           <p className="inline-block rounded-full bg-white/15 px-4 py-1 text-sm font-medium">Explore Sri Lanka</p>
           <h1 className="mt-4 text-4xl font-bold sm:text-5xl">All Destinations</h1>
           <p className="mt-4 max-w-2xl text-teal-50">
-            Browse our most popular routes and choose the experience that matches your travel style.
+            Signature destinations from our 04, 06, 07, 08, 09, 12, and 15-day tour packages.
           </p>
         </div>
       </section>
@@ -22,12 +22,21 @@ export default function DestinationsPage() {
               <div className="space-y-3 p-6">
                 <p className="text-sm font-medium text-teal-700">{item.area}</p>
                 <h2 className="text-xl font-bold text-slate-900">{item.title}</h2>
+                <p className="text-sm text-slate-600">{item.routeSnapshot}</p>
                 <p className="text-sm text-slate-600">{item.highlights}</p>
+                <div className="flex flex-wrap gap-2">
+                  {(item.featuredIn ?? []).slice(0, 2).map((pkg) => (
+                    <span key={pkg} className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
+                      {pkg}
+                    </span>
+                  ))}
+                </div>
                 <div className="grid grid-cols-2 gap-2 text-sm">
                   <p className="rounded-lg bg-slate-100 px-3 py-2">Duration: {item.duration}</p>
                   <p className="rounded-lg bg-slate-100 px-3 py-2">Rating: {item.rating}</p>
                 </div>
                 <p className="text-sm font-semibold text-amber-600">Best for: {item.bestFor}</p>
+                <p className="text-xs text-slate-500">Flexible private transport, comfort-first pacing, no forced shopping.</p>
                 <Link
                   href={`/destinations/${item.slug}`}
                   className="inline-flex rounded-full bg-[#0f766e] px-4 py-2 text-sm font-semibold text-white hover:bg-[#115e59]"

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
 import HomeMemories from "@/components/home-memories";
@@ -60,7 +59,7 @@ export default function Home() {
           <div>
           <h2 className="text-3xl font-bold text-slate-900">Popular Destinations</h2>
           <p className="mt-2 text-slate-600">
-            Carefully curated tours inspired by Sri Lanka&apos;s most loved places.
+            Signature package destinations from our complete Sri Lanka tour lineup.
           </p>
           </div>
           <Link
@@ -74,22 +73,30 @@ export default function Home() {
           {homeDestinations.map((tour) => (
             <article
               key={tour.title}
-              className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4] transition duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4]"
             >
-              <div className="relative h-52 w-full overflow-hidden">
-                <Image src={tour.image} alt={tour.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
-              </div>
+              <div className="h-28 w-full bg-gradient-to-r from-[#0f766e] via-[#115e59] to-[#4c2300]" />
               <div className="space-y-3 p-6">
-                <p className="text-sm font-medium text-teal-700">{tour.location}</p>
-                <h3 className="text-xl font-semibold">{tour.title}</h3>
-                <p className="text-sm text-slate-600">Small groups, private options, and flexible pickup times available.</p>
-                <div className="flex items-center justify-between text-sm">
-                  <p className="font-semibold text-amber-600">Rating: {tour.rating} / 5</p>
-                  <p className="text-slate-500">{tour.reviews} reviews</p>
+                <p className="text-sm font-medium text-teal-700">{tour.area}</p>
+                <h3 className="text-xl font-bold text-slate-900">{tour.title}</h3>
+                <p className="text-sm text-slate-600">{tour.routeSnapshot}</p>
+                <p className="text-sm text-slate-600">{tour.highlights}</p>
+                <div className="flex flex-wrap gap-2">
+                  {(tour.featuredIn ?? []).slice(0, 2).map((pkg) => (
+                    <span key={pkg} className="rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold text-teal-700">
+                      {pkg}
+                    </span>
+                  ))}
                 </div>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <p className="rounded-lg bg-slate-100 px-3 py-2">Duration: {tour.duration}</p>
+                  <p className="rounded-lg bg-slate-100 px-3 py-2">Rating: {tour.rating}</p>
+                </div>
+                <p className="text-sm font-semibold text-amber-600">Best for: {tour.bestFor}</p>
+                <p className="text-xs text-slate-500">Flexible private transport, comfort-first pacing, no forced shopping.</p>
                 <Link
                   href={`/destinations/${tour.slug}`}
-                  className="inline-flex rounded-full border border-[#0f766e] px-4 py-2 text-sm font-semibold text-[#0f766e] transition hover:bg-teal-50"
+                  className="inline-flex rounded-full bg-[#0f766e] px-4 py-2 text-sm font-semibold text-white hover:bg-[#115e59]"
                 >
                   More Details
                 </Link>
