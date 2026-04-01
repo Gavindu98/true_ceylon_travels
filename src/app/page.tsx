@@ -1,15 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
 import HomeMemories from "@/components/home-memories";
 
 export default function Home() {
   const destinations = [
-    { name: "Sigiriya Rock Fortress", area: "Cultural Triangle", rating: "4.9", tone: "from-amber-400 to-orange-500" },
-    { name: "Yala Safari Adventure", area: "Southern Wild Coast", rating: "4.8", tone: "from-emerald-500 to-lime-500" },
-    { name: "Ella Scenic Highlands", area: "Hill Country", rating: "5.0", tone: "from-teal-500 to-cyan-500" },
-    { name: "Mirissa Whale Coast", area: "South Coast", rating: "4.9", tone: "from-sky-500 to-blue-500" },
-    { name: "Kandy Heritage Walk", area: "Central Province", rating: "4.7", tone: "from-violet-500 to-purple-500" },
-    { name: "Galle Fort & Beaches", area: "Southwest Coast", rating: "4.8", tone: "from-fuchsia-500 to-rose-500" },
+    { title: "Sigiriya Rock Fortress", location: "Cultural Triangle", rating: "4.9", reviews: 128, image: "/images/hero-sigiriya.svg" },
+    { title: "Yala Safari Adventure", location: "Southern Wild Coast", rating: "4.8", reviews: 89, image: "/images/hero-yala.svg" },
+    { title: "Ella Scenic Highlands", location: "Hill Country", rating: "5.0", reviews: 156, image: "/images/hero-lanka.svg" },
+    { title: "Mirissa Whale Coast", location: "South Coast", rating: "4.9", reviews: 128, image: "/images/hero-mirissa.svg" },
+    { title: "Kandy Heritage Walk", location: "Central Province", rating: "4.7", reviews: 74, image: "/images/hero-sigiriya.svg" },
+    { title: "Galle Fort & Beaches", location: "Southwest Coast", rating: "4.8", reviews: 96, image: "/images/hero-mirissa.svg" },
   ];
 
   const stats = [
@@ -88,13 +89,27 @@ export default function Home() {
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {destinations.map((tour) => (
-            <article key={tour.name} className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4]">
-              <div className={`h-24 w-full bg-gradient-to-r ${tour.tone}`} />
-              <div className="p-6">
-                <p className="text-sm font-medium text-teal-700">{tour.area}</p>
-                <h3 className="mt-2 text-xl font-semibold">{tour.name}</h3>
-                <p className="mt-3 text-sm text-slate-600">Small groups, private options, and flexible pickup times available.</p>
-                <p className="mt-5 text-sm font-semibold text-amber-600">Rating: {tour.rating} / 5</p>
+            <article
+              key={tour.title}
+              className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4] transition duration-300 hover:-translate-y-1 hover:shadow-md"
+            >
+              <div className="relative h-52 w-full overflow-hidden">
+                <Image src={tour.image} alt={tour.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+              </div>
+              <div className="space-y-3 p-6">
+                <p className="text-sm font-medium text-teal-700">{tour.location}</p>
+                <h3 className="text-xl font-semibold">{tour.title}</h3>
+                <p className="text-sm text-slate-600">Small groups, private options, and flexible pickup times available.</p>
+                <div className="flex items-center justify-between text-sm">
+                  <p className="font-semibold text-amber-600">Rating: {tour.rating} / 5</p>
+                  <p className="text-slate-500">{tour.reviews} reviews</p>
+                </div>
+                <Link
+                  href="/destinations"
+                  className="inline-flex rounded-full border border-[#0f766e] px-4 py-2 text-sm font-semibold text-[#0f766e] transition hover:bg-teal-50"
+                >
+                  More Details
+                </Link>
               </div>
             </article>
           ))}
