@@ -88,11 +88,7 @@ export default function RootLayout({
                 </p>
               </div>
               <p className="mt-4 text-sm text-slate-300">
-                169/11 Nandasara Mawatha
-                <br />
-                Hokandara, Colombo
-                <br />
-                Sri Lanka
+                No 142/1 Bandaramawatha Gonahena Kadawatha Sri Lanka
               </p>
             </div>
 

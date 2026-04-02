@@ -48,7 +48,7 @@ export default function ContactPage() {
 
           <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-[#d7e4e4]">
             <h3 className="text-xl font-bold">Office Address</h3>
-            <p className="mt-3 text-slate-600">169/11 Nandasara Mawatha, Hokandara, Colombo, Sri Lanka</p>
+            <p className="mt-3 text-slate-600">No 142/1 Bandaramawatha Gonahena Kadawatha Sri Lanka</p>
             <p className="mt-1 text-slate-600">Email: info@trueceylontravels.com</p>
           </div>
 
