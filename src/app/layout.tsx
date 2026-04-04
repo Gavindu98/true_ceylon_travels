@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Noto_Serif, Plus_Jakarta_Sans } from "next/font/google";
+import {
+  FacebookFilled,
+  InstagramFilled,
+  MailOutlined,
+  PhoneOutlined,
+  TikTokFilled,
+  WhatsAppOutlined,
+} from "@ant-design/icons";
 import SiteHeader from "@/components/site-header";
 import UiProvider from "@/components/ui-provider";
 import "./globals.css";
@@ -33,74 +41,87 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col bg-[var(--color-surface)] text-[var(--foreground)]">
         <UiProvider>
           <SiteHeader />
-          <div className="flex-1 flex flex-col">{children}</div>
-          <footer className="border-t border-slate-200 bg-slate-900 text-slate-200">
+          <div className="flex-1 flex flex-col pt-[var(--header-height)]">{children}</div>
+          <footer className="border-t border-slate-800/80 bg-gradient-to-br from-slate-950 via-slate-900 to-[#0a3f36] text-slate-200">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-4 lg:px-8">
             <div>
-              <h3 className="text-lg font-bold text-white">True Ceylon Travels</h3>
+              <h3 className="text-xl font-bold text-white">True Ceylon Travels</h3>
               <p className="mt-3 text-sm text-slate-300">
-                Discover Sri Lanka with trusted local experts, curated routes, and personalized tour plans.
+                Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.
+              </p>
+              <p className="mt-4 text-xs uppercase tracking-[0.1em] text-amber-200">Travel with comfort, not speed.</p>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-amber-200">Quick Links</h4>
+              <div className="mt-3 space-y-2 text-sm">
+                <p><Link href="/" className="transition duration-200 hover:text-white">Home</Link></p>
+                <p><Link href="/tours" className="transition duration-200 hover:text-white">Tours</Link></p>
+                <p><Link href="/destinations" className="transition duration-200 hover:text-white">Destinations</Link></p>
+                <p><Link href="/contact" className="transition duration-200 hover:text-white">Contact</Link></p>
+              </div>
+              <h4 className="mt-6 text-sm font-semibold uppercase tracking-wide text-amber-200">Popular Services</h4>
+              <div className="mt-3 space-y-2 text-sm text-slate-300">
+                <p>Airport Transfers</p>
+                <p>Custom Private Tours</p>
+                <p>Safari & Hill Country Routes</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-amber-200">Contact</h4>
+              <div className="mt-3 space-y-2 text-sm">
+                <p>
+                  <a href="tel:+94707366627" className="inline-flex items-center gap-2 transition duration-200 hover:text-white">
+                    <PhoneOutlined /> +94 707 366 627
+                  </a>
+                </p>
+                <p>
+                  <a href="mailto:info@trueceylontravels.com" className="inline-flex items-center gap-2 transition duration-200 hover:text-white">
+                    <MailOutlined /> info@trueceylontravels.com
+                  </a>
+                </p>
+                <p>
+                  <a href="https://wa.me/94707366627" className="inline-flex items-center gap-2 transition duration-200 hover:text-white">
+                    <WhatsAppOutlined /> WhatsApp Chat
+                  </a>
+                </p>
+              </div>
+              <p className="mt-4 text-sm text-slate-300">
+                No 142/1 Bandaramawatha Gonahena Kadawatha Sri Lanka
               </p>
             </div>
 
             <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-white">Quick Links</h4>
-              <div className="mt-3 space-y-2 text-sm">
-                <p>
-                  <Link href="/" className="hover:text-white">
-                    Home
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/destinations" className="hover:text-white">
-                    Destinations
-                  </Link>
-                </p>
-                <p>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact
-                  </Link>
-                </p>
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-amber-200">Follow Us</h4>
+              <div className="mt-3 flex items-center gap-3">
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
+                  <FacebookFilled />
+                </a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
+                  <InstagramFilled />
+                </a>
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
+                  <TikTokFilled />
+                </a>
               </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-white">Contact</h4>
-              <div className="mt-3 space-y-2 text-sm">
-                <p>
-                  <a href="tel:+94763809067" className="hover:text-white">
-                    Call +94 76 380 9067
-                  </a>
-                </p>
-                <p>
-                  <a href="mailto:info@trueceylontravels.com" className="hover:text-white">
-                    info@trueceylontravels.com
-                  </a>
-                </p>
-                <p>
-                  <a href="https://wa.me/94763809067" className="hover:text-white">
-                    WhatsApp Chat
-                  </a>
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-semibold uppercase tracking-wide text-white">Office</h4>
-              <p className="mt-3 text-sm text-slate-300">
-                169/11 Nandasara Mawatha
+              <p className="mt-5 text-sm text-slate-300">
+                Need a tailored itinerary?
                 <br />
-                Hokandara, Colombo
-                <br />
-                Sri Lanka
+                Message your travel dates and style, and we&apos;ll craft your perfect Sri Lanka route.
               </p>
             </div>
           </div>
 
           <div className="border-t border-slate-800">
             <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-4 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between lg:px-8">
-              <p>© {new Date().getFullYear()} True Ceylon Travels. All rights reserved.</p>
-              <p>Licensed Sri Lanka Tour Operator</p>
+              <p>© 2026 True Ceylon Travels. All rights reserved.</p>
+              <p>
+                Developed by{" "}
+                <a href="https://codeloom.com" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-amber-200">
+                  CODELOOM
+                </a>
+              </p>
             </div>
           </div>
           </footer>

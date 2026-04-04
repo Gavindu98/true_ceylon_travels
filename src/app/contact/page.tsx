@@ -34,11 +34,11 @@ export default function ContactPage() {
             <h3 className="text-xl font-bold">Quick Contact</h3>
             <p className="mt-4 text-slate-600">Prefer direct communication? Reach us via phone or WhatsApp.</p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <a href="tel:+94763809067" className="rounded-full bg-[#0f766e] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#115e59]">
-                Call +94 76 380 9067
+              <a href="tel:+94707366627" className="rounded-full bg-[#0f766e] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#115e59]">
+                Call +94 707 366 627
               </a>
               <a
-                href="https://wa.me/94763809067"
+                href="https://wa.me/94707366627"
                 className="rounded-full border border-[#0f766e] px-5 py-2.5 text-sm font-semibold text-[#0f766e] hover:bg-teal-50"
               >
                 Chat on WhatsApp
@@ -48,7 +48,7 @@ export default function ContactPage() {
 
           <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-[#d7e4e4]">
             <h3 className="text-xl font-bold">Office Address</h3>
-            <p className="mt-3 text-slate-600">169/11 Nandasara Mawatha, Hokandara, Colombo, Sri Lanka</p>
+            <p className="mt-3 text-slate-600">No 142/1 Bandaramawatha Gonahena Kadawatha Sri Lanka</p>
             <p className="mt-1 text-slate-600">Email: info@trueceylontravels.com</p>
           </div>
 

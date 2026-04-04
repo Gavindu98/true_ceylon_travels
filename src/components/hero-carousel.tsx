@@ -56,7 +56,7 @@ export default function HeroCarousel() {
   const currentSlide = slides[activeIndex];
 
   return (
-    <section className="relative h-[calc(100dvh-var(--header-height))] overflow-hidden bg-[#0a3a3a] text-white">
+    <section className="relative h-dvh overflow-hidden bg-[#0a3a3a] text-white">
       <Image src={currentSlide.image} alt={currentSlide.title} fill priority className="object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-black/10" />
       <button
@@ -113,7 +113,7 @@ export default function HeroCarousel() {
 
         <div className="hidden rounded-3xl border border-white/60 bg-white/15 p-6 shadow-xl backdrop-blur-sm md:block">
           <p className="text-sm text-white/90">Featured Route</p>
-          <h3 className="mt-2 text-2xl font-bold text-white">7 Days Classic Sri Lanka</h3>
+          <h3 className="mt-2 text-2xl font-bold !text-amber-100">7 Days Classic Sri Lanka</h3>
           <p className="mt-3 text-sm text-white/90">Colombo - Sigiriya - Kandy - Ella - Yala - Mirissa with private driver guide.</p>
           <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
             <p className="rounded-xl bg-white/20 p-3 text-white">Culture</p>
