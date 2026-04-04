@@ -63,7 +63,7 @@ export default function ToursPage() {
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
       <section className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-          <h1 className="text-4xl font-bold sm:text-5xl">Tours</h1>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">Tours</h1>
           <p className="mt-4 max-w-2xl text-teal-50">
             True Ceylon Travels signature tour packages designed for comfort, smooth routing, and flexible travel pace.
           </p>
