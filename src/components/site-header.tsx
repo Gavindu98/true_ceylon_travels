@@ -24,8 +24,8 @@ export default function SiteHeader() {
   const closeMobile = () => setMobileOpen(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[1000] border-b border-slate-200/70 bg-[rgba(252,249,242,0.9)] backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-[1000] flex h-[var(--header-height)] items-center border-b border-slate-200/70 bg-[rgba(252,249,242,0.9)] backdrop-blur">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 lg:px-8">
         <Link href="/" className="text-lg font-bold tracking-tight text-[var(--color-primary)]">
           True Ceylon Travels
         </Link>

@@ -151,7 +151,7 @@ export default function ContactInquiryForm() {
       <button
         type="submit"
         disabled={loading}
-        className="rounded-full bg-[#0f766e] px-6 py-3 text-sm font-semibold text-white hover:bg-[#115e59] disabled:opacity-60"
+        className="rounded-full bg-[#0f766e] px-6 py-3 text-sm font-semibold !text-white hover:bg-[#115e59] disabled:opacity-60"
       >
         {loading ? "Sending..." : "Send Inquiry"}
       </button>
