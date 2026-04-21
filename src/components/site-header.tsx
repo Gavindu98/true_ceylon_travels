@@ -1,22 +1,35 @@
 "use client";
 
-import { DownOutlined, MenuOutlined } from "@ant-design/icons";
+import { CompassOutlined, DownOutlined, MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Dropdown, Space } from "antd";
 import type { MenuProps } from "antd";
 import Link from "next/link";
 import { useState } from "react";
+import { dayTours, tourStyles } from "@/data/nav-tour-data";
 
-const toursItems: MenuProps["items"] = [
-  { key: "all", label: <Link href="/tours">All Tours</Link> },
-  { key: "day", label: <Link href="/tours#day-tours">Day Tours</Link> },
-  { key: "multi", label: <Link href="/tours#multi-day">Multi-day Tours</Link> },
-];
+const dayToursItems: MenuProps["items"] = dayTours.map((item) => ({
+  key: item.slug,
+  label: (
+    <Link href={`/day-tours/${item.slug}`} className="group block rounded-xl px-1 py-1">
+      <p className="text-sm font-semibold text-slate-800 transition-colors duration-200 group-hover:text-emerald-800">
+        {item.title}
+      </p>
+      <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+    </Link>
+  ),
+}));
 
-const customToursItems: MenuProps["items"] = [
-  { key: "planner", label: <Link href="/custom-tours">Custom Tour Planner</Link> },
-  { key: "private", label: <Link href="/custom-tours#private">Private Tours</Link> },
-  { key: "group", label: <Link href="/custom-tours#group">Group Tours</Link> },
-];
+const toursItems: MenuProps["items"] = tourStyles.map((item) => ({
+  key: item.slug,
+  label: (
+    <Link href={`/tours/categories/${item.slug}`} className="group block rounded-xl px-1 py-1">
+      <p className="text-sm font-semibold text-slate-800 transition-colors duration-200 group-hover:text-emerald-800">
+        {item.title}
+      </p>
+      <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+    </Link>
+  ),
+}));
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,32 +42,42 @@ export default function SiteHeader() {
         <Link href="/" className="text-lg font-bold tracking-tight text-[var(--color-primary)]">
           True Ceylon Travels
         </Link>
-        <nav className="hidden items-center gap-3 text-sm font-medium lg:flex">
-          <Dropdown menu={{ items: toursItems }} trigger={["hover"]}>
-            <Button type="text" className="!text-[var(--foreground)] hover:!text-[var(--color-primary)]">
+        <nav className="hidden items-center gap-2 text-sm font-medium lg:flex">
+          <Dropdown
+            menu={{ items: dayToursItems, className: "!rounded-2xl !p-2", style: { minWidth: 330 } }}
+            trigger={["hover"]}
+            overlayClassName="luxury-nav-dropdown"
+          >
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
               <Space>
+                <CompassOutlined />
+                Day Tours
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
+
+          <Dropdown
+            menu={{ items: toursItems, className: "!rounded-2xl !p-2", style: { minWidth: 330 } }}
+            trigger={["hover"]}
+            overlayClassName="luxury-nav-dropdown"
+          >
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
+              <Space>
+                <CompassOutlined />
                 Tours
                 <DownOutlined />
               </Space>
             </Button>
           </Dropdown>
 
-          <Dropdown menu={{ items: customToursItems }} trigger={["hover"]}>
-            <Button type="text" className="!text-[var(--foreground)] hover:!text-[var(--color-primary)]">
-              <Space>
-                Custom Tours
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-
           <Link href="/destinations">
-            <Button type="text" className="!text-[var(--foreground)] hover:!text-[var(--color-primary)]">
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
               Destinations
             </Button>
           </Link>
           <Link href="/contact">
-            <Button type="text" className="!text-[var(--foreground)] hover:!text-[var(--color-primary)]">
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
               Contact
             </Button>
           </Link>
@@ -81,34 +104,38 @@ export default function SiteHeader() {
         onClose={closeMobile}
         size="default"
       >
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Tours</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Day Tours</p>
             <div className="flex flex-col gap-2">
-              <Link href="/tours" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                All Tours
-              </Link>
-              <Link href="/tours#day-tours" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                Day Tours
-              </Link>
-              <Link href="/tours#multi-day" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                Multi-day Tours
-              </Link>
+              {dayTours.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/day-tours/${item.slug}`}
+                  onClick={closeMobile}
+                  className="rounded-xl border border-slate-100 bg-white px-3 py-2 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-100 hover:bg-emerald-50/40"
+                >
+                  <p className="text-sm font-semibold">{item.title}</p>
+                  <p className="text-xs text-slate-500">{item.description}</p>
+                </Link>
+              ))}
             </div>
           </div>
 
           <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Custom Tours</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Tours</p>
             <div className="flex flex-col gap-2">
-              <Link href="/custom-tours" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                Custom Tour Planner
-              </Link>
-              <Link href="/custom-tours#private" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                Private Tours
-              </Link>
-              <Link href="/custom-tours#group" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
-                Group Tours
-              </Link>
+              {tourStyles.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/tours/categories/${item.slug}`}
+                  onClick={closeMobile}
+                  className="rounded-xl border border-slate-100 bg-white px-3 py-2 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-100 hover:bg-emerald-50/40"
+                >
+                  <p className="text-sm font-semibold">{item.title}</p>
+                  <p className="text-xs text-slate-500">{item.description}</p>
+                </Link>
+              ))}
             </div>
           </div>
 
