@@ -1,9 +1,12 @@
 import Link from "next/link";
-import MemoryCards from "@/components/memory-cards";
+import MemoriesInfiniteList from "@/components/memories-infinite-list";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
 import type { MemoryRecord } from "@/types/memory";
 
+export const revalidate = 300;
+
 export default async function MemoriesPage() {
+  const pageSize = 9;
   let memories: MemoryRecord[] = [];
 
   try {
@@ -11,7 +14,8 @@ export default async function MemoriesPage() {
     const { data, error } = await supabase
       .from("tour_memories")
       .select("*")
-      .order("id", { ascending: false });
+      .order("id", { ascending: false })
+      .limit(pageSize);
 
     if (!error && data) {
       memories = data as MemoryRecord[];
@@ -38,7 +42,7 @@ export default async function MemoriesPage() {
             Back to Home
           </Link>
         </div>
-        <MemoryCards memories={memories} />
+        <MemoriesInfiniteList initialMemories={memories} pageSize={pageSize} />
       </section>
     </main>
   );
