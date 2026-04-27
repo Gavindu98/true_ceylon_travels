@@ -14,3 +14,12 @@ export function createServiceRoleClient() {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 }
+
+export function getServiceRoleConfigError(): string | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) {
+    return "Server is missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY";
+  }
+  return null;
+}

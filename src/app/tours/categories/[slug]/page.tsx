@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { tourStyles } from "@/data/nav-tour-data";
+import { getTourContentData } from "@/lib/tour-content";
 
 type TourCategoryDetailPageProps = {
   params: Promise<{
@@ -10,6 +10,7 @@ type TourCategoryDetailPageProps = {
 
 export default async function TourCategoryDetailPage({ params }: TourCategoryDetailPageProps) {
   const { slug } = await params;
+  const { tourStyles } = await getTourContentData();
   const tourCategory = tourStyles.find((item) => item.slug === slug);
 
   if (!tourCategory) {
@@ -18,7 +19,18 @@ export default async function TourCategoryDetailPage({ params }: TourCategoryDet
 
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white">
+      <section
+        className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white"
+        style={
+          tourCategory.coverImageUrl
+            ? {
+                backgroundImage: `linear-gradient(rgba(8,47,43,0.62), rgba(8,47,43,0.62)), url(${tourCategory.coverImageUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+            : undefined
+        }
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
           <p className="text-xs uppercase tracking-[0.08em] text-teal-100">Tour Category</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{tourCategory.title}</h1>

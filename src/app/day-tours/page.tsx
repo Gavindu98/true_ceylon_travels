@@ -1,14 +1,20 @@
 import Link from "next/link";
-import { dayTours } from "@/data/nav-tour-data";
+import { getTourContentData } from "@/lib/tour-content";
 
-export default function DayToursPage() {
+export default async function DayToursPage() {
+  const { dayTours, covers } = await getTourContentData();
+  const cover = covers.find((item) => item.page_key === "day-tours");
+
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white">
+      <section
+        className="relative overflow-hidden bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white"
+        style={cover?.image_url ? { backgroundImage: `linear-gradient(rgba(8,47,43,0.62), rgba(8,47,43,0.62)), url(${cover.image_url})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-          <h1 className="text-4xl font-bold sm:text-5xl">Day Tours</h1>
+          <h1 className="text-4xl font-bold sm:text-5xl">{cover?.title || "Day Tours"}</h1>
           <p className="mt-4 max-w-2xl text-teal-50">
-            Choose from our most popular one-day experiences across Sri Lanka.
+            {cover?.subtitle || "Choose from our most popular one-day experiences across Sri Lanka."}
           </p>
         </div>
       </section>
@@ -16,7 +22,11 @@ export default function DayToursPage() {
       <section className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {dayTours.map((tour) => (
-            <article key={tour.slug} className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#d7e4e4]">
+            <article key={tour.slug} className="overflow-hidden rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#d7e4e4]">
+              {tour.coverImageUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={tour.coverImageUrl} alt={tour.title} className="mb-4 h-40 w-full rounded-xl object-cover" />
+              ) : null}
               <h2 className="text-xl font-semibold">{tour.title}</h2>
               <p className="mt-2 text-sm text-slate-600">{tour.description}</p>
               <Link

@@ -5,6 +5,7 @@ type BaseNavTourItem = {
 };
 
 export type DayTourItem = BaseNavTourItem & {
+  coverImageUrl?: string;
   location: string;
   duration: string;
   bestFor: string;
@@ -16,6 +17,7 @@ export type DayTourItem = BaseNavTourItem & {
 };
 
 export type TourCategoryItem = BaseNavTourItem & {
+  coverImageUrl?: string;
   routeFlow: string;
   sampleDuration: string;
   travelStyle: string;
