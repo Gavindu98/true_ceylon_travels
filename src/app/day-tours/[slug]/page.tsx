@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { dayTours } from "@/data/nav-tour-data";
+import { getTourContentData } from "@/lib/tour-content";
 
 type DayTourDetailPageProps = {
   params: Promise<{
@@ -10,6 +10,7 @@ type DayTourDetailPageProps = {
 
 export default async function DayTourDetailPage({ params }: DayTourDetailPageProps) {
   const { slug } = await params;
+  const { dayTours } = await getTourContentData();
   const tour = dayTours.find((item) => item.slug === slug);
 
   if (!tour) {
@@ -18,7 +19,10 @@ export default async function DayTourDetailPage({ params }: DayTourDetailPagePro
 
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white">
+      <section
+        className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white"
+        style={tour.coverImageUrl ? { backgroundImage: `linear-gradient(rgba(8,47,43,0.62), rgba(8,47,43,0.62)), url(${tour.coverImageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
           <p className="text-xs uppercase tracking-[0.08em] text-teal-100">Day Tour</p>
           <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{tour.title}</h1>

@@ -4,6 +4,7 @@ import { Tabs } from "antd";
 import AdminMemoryManager from "@/components/admin-memory-manager";
 import AdminContactsList from "@/components/admin-contacts-list";
 import AdminFeedbackManager from "@/components/admin-feedback-manager";
+import AdminTourContentManager from "@/components/admin-tour-content-manager";
 
 export default function AdminDashboardTabs() {
   return (
@@ -25,6 +26,11 @@ export default function AdminDashboardTabs() {
           key: "memories",
           label: "Memories",
           children: <AdminMemoryManager />,
+        },
+        {
+          key: "tour-content",
+          label: "Tour Content",
+          children: <AdminTourContentManager />,
         },
         {
           key: "contacts",
