@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/hero-carousel";
+import FeaturedCampaigns from "@/components/featured-campaigns";
 import HomeMemories from "@/components/home-memories";
 import { destinations } from "@/data/destinations";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
@@ -49,6 +50,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-[var(--color-surface)] mt-[-7px] text-[var(--foreground)]">
       <HeroCarousel />
+      <FeaturedCampaigns />
 
       <section id="destinations" className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
