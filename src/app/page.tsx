@@ -30,20 +30,48 @@ export default async function Home() {
 
   const faqs = [
     {
-      q: "How can I book a tour?",
-      a: "Send us your dates and preferences via WhatsApp or contact form. We confirm your itinerary and share booking details quickly.",
+      q: "Do you offer customized tour packages?",
+      a: "Yes. We specialize in fully personalized travel experiences. Every itinerary is designed based on your budget, travel style, and interests.",
     },
     {
-      q: "Do you offer custom itineraries?",
-      a: "Yes. We design private trips based on your travel style, group size, pace, and budget.",
+      q: "Can you plan a trip within my budget?",
+      a: "Absolutely. We create flexible travel plans ranging from comfortable to luxury experiences, ensuring you get the best value without compromising quality.",
     },
     {
-      q: "What is included in pricing?",
-      a: "Most packages include transport, guide support, and key activity fees. Exact inclusions are listed on each itinerary.",
+      q: "What is included in your tour packages?",
+      a: "Our packages typically include:\n\nPrivate air-conditioned vehicle\nProfessional chauffeur guide\nAccommodation options (on request)\nActivity planning and recommendations\n\nEverything can be adjusted to your needs.",
     },
     {
-      q: "Are tours family friendly?",
-      a: "Absolutely. We can recommend family-oriented routes with child-friendly timings and activities.",
+      q: "Do you provide airport pickup and drop-off?",
+      a: "Yes, we offer reliable airport transfers with a warm welcome and smooth drop-off at the end of your journey.",
+    },
+    {
+      q: "Can we choose our own hotels?",
+      a: "Of course. You can:\n\nBook your own hotels, or\nLet us arrange handpicked 3★, 4★, or 5★ stays\n\nWe adapt to your preference.",
+    },
+    {
+      q: "Is the driver also a guide?",
+      a: "Yes. Our chauffeurs are experienced, English-speaking driver-guides who provide local insights and ensure a safe, comfortable journey.",
+    },
+    {
+      q: "Do you arrange activities like safari or whale watching?",
+      a: "Yes, we organize:\n\nWildlife safaris\nWhale watching tours\nCultural experiences\nScenic train rides\n\nAll activities can be added to your customized plan.",
+    },
+    {
+      q: "How do I book a tour with you?",
+      a: "Booking is simple:\n\nContact us via WhatsApp\nShare your travel dates and preferences\nReceive a customized itinerary\nConfirm your trip",
+    },
+    {
+      q: "Is Sri Lanka safe for tourists?",
+      a: "Yes, Sri Lanka is a safe and welcoming destination. We ensure your journey is smooth, secure, and well-organized throughout.",
+    },
+    {
+      q: "Why choose True Ceylon Travels?",
+      a: "Because we offer:\n\nPersonalized travel planning\nTransparent and flexible pricing\nProfessional service\nLocal expertise\nMemorable travel experiences\n\nWe don't sell fixed packages—we create journeys designed just for you.",
+    },
+    {
+      q: "How fast will I receive my itinerary?",
+      a: "Most inquiries receive a custom travel plan within a few hours, depending on your requirements.",
     },
   ];
 
@@ -260,7 +288,7 @@ export default async function Home() {
           {faqs.map((item) => (
             <details key={item.q} className="rounded-xl bg-white p-5 shadow-sm ring-1 ring-[#d7e4e4]">
               <summary className="cursor-pointer font-semibold text-slate-900">{item.q}</summary>
-              <p className="mt-3 text-slate-600">{item.a}</p>
+              <p className="mt-3 whitespace-pre-line text-slate-600">{item.a}</p>
             </details>
           ))}
         </div>
