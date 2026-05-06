@@ -314,18 +314,20 @@ export default async function Home() {
 
               <div className="mt-7 flex flex-wrap gap-3 text-sm font-semibold">
                 <Link
-                  href="https://www.tripadvisor.com/Attraction_Review-g293962-d32884830-Reviews-Dear_Srilanka_Tours-Colombo_Western_Province.html"
+                  href="https://www.tripadvisor.com/Profile/Dream66288453201"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#34e0a1] px-6 py-3 text-[#03352e] transition hover:brightness-95"
                 >
-                  Write a Review
+                  TripAdvisor Profile
                 </Link>
                 <Link
-                  href="/contact"
+                  href="https://www.viator.com/account/myProfile?tab=personal"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-full border border-white/70 px-6 py-3 text-white transition hover:bg-white/10"
                 >
-                  Contact Our Team
+                  Viator Profile
                 </Link>
               </div>
             </div>
