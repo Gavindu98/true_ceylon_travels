@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import AdminDashboardTabs from "@/components/admin-dashboard-tabs";
 
 export default function AdminDashboardPage() {
@@ -19,7 +20,9 @@ export default function AdminDashboardPage() {
         </section>
 
         <section className="rounded-2xl bg-white p-6 shadow-sm">
-          <AdminDashboardTabs />
+          <Suspense fallback={<p className="text-sm text-slate-600">Loading dashboard tabs...</p>}>
+            <AdminDashboardTabs />
+          </Suspense>
         </section>
       </div>
     </main>

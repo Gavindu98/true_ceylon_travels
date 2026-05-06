@@ -319,15 +319,13 @@ export default async function Home() {
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#34e0a1] px-6 py-3 text-[#03352e] transition hover:brightness-95"
                 >
-                  TripAdvisor Profile
+                  Write a Review
                 </Link>
                 <Link
-                  href="https://www.viator.com/account/myProfile?tab=personal"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/contact"
                   className="rounded-full border border-white/70 px-6 py-3 text-white transition hover:bg-white/10"
                 >
-                  Viator Profile
+                  Contact Our Team
                 </Link>
               </div>
             </div>
