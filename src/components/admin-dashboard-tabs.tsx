@@ -157,10 +157,12 @@ export default function AdminDashboardTabs() {
     },
   ] as const;
 
-  const validTabKeys = useMemo(() => tabItems.map((item) => item.key), [tabItems]);
-  const activeKey = tabFromUrl && validTabKeys.includes(tabFromUrl) ? tabFromUrl : "overview";
+  type TabKey = (typeof tabItems)[number]["key"];
+  const isTabKey = (value: string | null): value is TabKey => value !== null && tabItems.some((item) => item.key === value);
+  const activeKey: TabKey = isTabKey(tabFromUrl) ? tabFromUrl : "overview";
 
   const handleTabChange = (key: string) => {
+    if (!isTabKey(key)) return;
     const params = new URLSearchParams(searchParams.toString());
     if (key === "overview") {
       params.delete("tab");
@@ -175,7 +177,7 @@ export default function AdminDashboardTabs() {
     <Tabs
       activeKey={activeKey}
       onChange={handleTabChange}
-      items={tabItems as { key: string; label: string; children: React.ReactNode }[]}
+      items={[...tabItems]}
     />
   );
 }
