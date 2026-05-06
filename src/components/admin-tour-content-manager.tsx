@@ -245,10 +245,18 @@ export default function AdminTourContentManager() {
                         <p className="text-xs text-slate-500">{item.slug}</p>
                         <p className="mt-1 text-sm text-slate-600">{item.short_description}</p>
                         <div className="mt-3 flex gap-2">
-                          <button type="button" onClick={() => handleEdit(item)} className="rounded-full border px-3 py-1 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => handleEdit(item)}
+                            className="cursor-pointer rounded-full border border-slate-300 px-3 py-1 text-xs transition hover:bg-slate-50"
+                          >
                             Edit
                           </button>
-                          <button type="button" onClick={() => void handleDelete(item.id)} className="rounded-full border px-3 py-1 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => void handleDelete(item.id)}
+                            className="cursor-pointer rounded-full border border-rose-300 px-3 py-1 text-xs text-rose-700 transition hover:bg-rose-50"
+                          >
                             Delete
                           </button>
                         </div>
@@ -265,10 +273,18 @@ export default function AdminTourContentManager() {
                         <p className="text-xs text-slate-500">{item.slug}</p>
                         <p className="mt-1 text-sm text-slate-600">{item.short_description}</p>
                         <div className="mt-3 flex gap-2">
-                          <button type="button" onClick={() => handleEdit(item)} className="rounded-full border px-3 py-1 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => handleEdit(item)}
+                            className="cursor-pointer rounded-full border border-slate-300 px-3 py-1 text-xs transition hover:bg-slate-50"
+                          >
                             Edit
                           </button>
-                          <button type="button" onClick={() => void handleDelete(item.id)} className="rounded-full border px-3 py-1 text-xs">
+                          <button
+                            type="button"
+                            onClick={() => void handleDelete(item.id)}
+                            className="cursor-pointer rounded-full border border-rose-300 px-3 py-1 text-xs text-rose-700 transition hover:bg-rose-50"
+                          >
                             Delete
                           </button>
                         </div>
@@ -283,8 +299,8 @@ export default function AdminTourContentManager() {
             key: "add",
             label: isEditing ? "Edit Item" : "Add Item",
             children: (
-              <form onSubmit={handleItemSubmit} className="space-y-4">
-                <div className="grid gap-4 md:grid-cols-2">
+              <form onSubmit={handleItemSubmit} className="space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
                     <label htmlFor="type" className="mb-1 block text-sm font-medium">
                       Item Type
@@ -313,7 +329,7 @@ export default function AdminTourContentManager() {
                   </div>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2">
                   <input
                     placeholder="Slug"
                     value={form.slug}
@@ -337,7 +353,7 @@ export default function AdminTourContentManager() {
                 />
 
                 {form.type === "day_tour" ? (
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2">
                     <input
                       placeholder="Location"
                       value={form.location}
@@ -364,7 +380,7 @@ export default function AdminTourContentManager() {
                     />
                   </div>
                 ) : (
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2">
                     <input
                       placeholder="Sample Duration"
                       value={form.sample_duration}
@@ -401,7 +417,7 @@ export default function AdminTourContentManager() {
                   <p className="mt-1 text-xs text-slate-500">{form.cover_image_url || "Upload an image for this tour page."}</p>
                 </div>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-5 md:grid-cols-2">
                   <textarea
                     placeholder="Highlights (one per line)"
                     rows={5}
@@ -433,7 +449,7 @@ export default function AdminTourContentManager() {
                 </div>
 
                 {form.type === "tour_category" ? (
-                  <div className="grid gap-4 md:grid-cols-2">
+                  <div className="grid gap-5 md:grid-cols-2">
                     <textarea
                       placeholder="Sample Destinations (one per line)"
                       rows={4}
@@ -475,11 +491,19 @@ export default function AdminTourContentManager() {
                 </label>
 
                 <div className="flex gap-3">
-                  <button type="submit" disabled={loading} className="rounded-full bg-[var(--color-primary)] px-6 py-2 text-sm font-semibold text-white">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="cursor-pointer rounded-full bg-[var(--color-primary)] px-6 py-2 text-sm font-semibold !text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
                     {loading ? "Saving..." : isEditing ? "Update Item" : "Save Item"}
                   </button>
                   {isEditing ? (
-                    <button type="button" onClick={resetForm} className="rounded-full border border-slate-300 px-6 py-2 text-sm font-semibold">
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className="cursor-pointer rounded-full border border-slate-300 px-6 py-2 text-sm font-semibold transition hover:bg-slate-50"
+                    >
                       Cancel
                     </button>
                   ) : null}
@@ -491,51 +515,63 @@ export default function AdminTourContentManager() {
             key: "covers",
             label: "Page Covers",
             children: (
-              <form onSubmit={handleCoverSubmit} className="space-y-4">
+              <form onSubmit={handleCoverSubmit} className="space-y-6">
                 <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => handleCoverPick("day-tours")} className="rounded-full border px-4 py-2 text-xs font-semibold">
+                  <button
+                    type="button"
+                    onClick={() => handleCoverPick("day-tours")}
+                    className="cursor-pointer rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold transition hover:bg-slate-50"
+                  >
                     Load Day Tours Cover
                   </button>
                   <button
                     type="button"
                     onClick={() => handleCoverPick("tour-categories")}
-                    className="rounded-full border px-4 py-2 text-xs font-semibold"
+                    className="cursor-pointer rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold transition hover:bg-slate-50"
                   >
                     Load Tour Categories Cover
                   </button>
                 </div>
 
-                <select
-                  value={coverForm.page_key}
-                  onChange={(e) => setCoverForm((prev) => ({ ...prev, page_key: e.target.value as CoverFormState["page_key"] }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                >
-                  <option value="day-tours">Day Tours Page</option>
-                  <option value="tour-categories">Tour Categories Page</option>
-                </select>
-                <input
-                  placeholder="Cover Title"
-                  value={coverForm.title}
-                  onChange={(e) => setCoverForm((prev) => ({ ...prev, title: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                />
-                <textarea
-                  rows={3}
-                  placeholder="Cover Subtitle"
-                  value={coverForm.subtitle}
-                  onChange={(e) => setCoverForm((prev) => ({ ...prev, subtitle: e.target.value }))}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                />
-                <input
-                  ref={coverInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setSelectedCoverFile(e.target.files?.[0] ?? null)}
-                  className="w-full rounded-lg border border-slate-300 px-3 py-2"
-                />
-                <p className="text-xs text-slate-500">{coverForm.image_url || "Upload cover photo for selected page."}</p>
+                <div className="grid gap-4">
+                  <select
+                    value={coverForm.page_key}
+                    onChange={(e) => setCoverForm((prev) => ({ ...prev, page_key: e.target.value as CoverFormState["page_key"] }))}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5"
+                  >
+                    <option value="day-tours">Day Tours Page</option>
+                    <option value="tour-categories">Tour Categories Page</option>
+                  </select>
+                  <input
+                    placeholder="Cover Title"
+                    value={coverForm.title}
+                    onChange={(e) => setCoverForm((prev) => ({ ...prev, title: e.target.value }))}
+                    className="w-full rounded-lg border border-slate-300 mb-4 px-3 py-2.5"
+                  />
+                  <textarea
+                    rows={3}
+                    placeholder="Cover Subtitle"
+                    value={coverForm.subtitle}
+                    onChange={(e) => setCoverForm((prev) => ({ ...prev, subtitle: e.target.value }))}
+                    className="w-full rounded-lg border border-slate-300 px-3 py-2.5"
+                  />
+                  <div className="space-y-2">
+                    <input
+                      ref={coverInputRef}
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setSelectedCoverFile(e.target.files?.[0] ?? null)}
+                      className="w-full rounded-lg border border-slate-300 px-3 py-2.5"
+                    />
+                    <p className="text-xs text-slate-500">{coverForm.image_url || "Upload cover photo for selected page."}</p>
+                  </div>
+                </div>
 
-                <button type="submit" disabled={coverLoading} className="rounded-full bg-[var(--color-primary)] px-6 py-2 text-sm font-semibold text-white">
+                <button
+                  type="submit"
+                  disabled={coverLoading}
+                  className="cursor-pointer rounded-full bg-[var(--color-primary)] px-6 py-2 text-sm font-semibold !text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+                >
                   {coverLoading ? "Saving..." : "Save Page Cover"}
                 </button>
               </form>
