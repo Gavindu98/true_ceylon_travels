@@ -24,7 +24,7 @@ const notoSerif = Noto_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://true-ceylon-travels.vercel.app"),
+  metadataBase: new URL("https://trueceylontravels.com"),
   title: {
     default: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
     template: "%s | True Ceylon Travels",
@@ -42,19 +42,33 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   openGraph: {
     type: "website",
-    url: "https://true-ceylon-travels.vercel.app",
+    url: "https://trueceylontravels.com",
     title: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
     description:
       "Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.",
     siteName: "True Ceylon Travels",
+    images: [
+      {
+        url: "/images/campaign/sri-lanka-grid.png",
+        width: 1200,
+        height: 630,
+        alt: "True Ceylon Travels - Private tours and airport transfers in Sri Lanka",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
     description:
       "Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.",
+    images: ["/images/campaign/sri-lanka-grid.png"],
   },
   robots: {
     index: true,
