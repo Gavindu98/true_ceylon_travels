@@ -24,8 +24,50 @@ const notoSerif = Noto_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "True Ceylon Travels",
-  description: "Discover Sri Lanka with curated tours and trusted local guides.",
+  metadataBase: new URL("https://true-ceylon-travels.vercel.app"),
+  title: {
+    default: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
+    template: "%s | True Ceylon Travels",
+  },
+  description:
+    "Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.",
+  keywords: [
+    "Sri Lanka tours",
+    "Sri Lanka private tours",
+    "Sri Lanka airport transfer",
+    "Colombo airport pickup",
+    "Sri Lanka chauffeur service",
+    "True Ceylon Travels",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://true-ceylon-travels.vercel.app",
+    title: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
+    description:
+      "Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.",
+    siteName: "True Ceylon Travels",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
+    description:
+      "Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  category: "travel",
 };
 
 export default function RootLayout({
