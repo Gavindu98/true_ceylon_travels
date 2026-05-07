@@ -1,11 +1,42 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import HeroCarousel from "@/components/hero-carousel";
 import FeaturedCampaigns from "@/components/featured-campaigns";
 import HomeMemories from "@/components/home-memories";
 import { destinations } from "@/data/destinations";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
 import type { FeedbackRecord } from "@/types/feedback";
+
+export const metadata: Metadata = {
+  title: "Private Tours and Airport Transfers in Sri Lanka",
+  description:
+    "Plan private Sri Lanka tours with True Ceylon Travels. Book airport transfers, custom itineraries, safaris, beaches, and hill country experiences.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Private Tours and Airport Transfers in Sri Lanka",
+    description:
+      "Plan private Sri Lanka tours with True Ceylon Travels. Book airport transfers, custom itineraries, safaris, beaches, and hill country experiences.",
+    url: "https://trueceylontravels.com/",
+    images: [
+      {
+        url: "/images/campaign/sri-lanka-grid.png",
+        width: 1200,
+        height: 630,
+        alt: "Private Sri Lanka tours by True Ceylon Travels",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Private Tours and Airport Transfers in Sri Lanka",
+    description:
+      "Plan private Sri Lanka tours with True Ceylon Travels. Book airport transfers, custom itineraries, safaris, beaches, and hill country experiences.",
+    images: ["/images/campaign/sri-lanka-grid.png"],
+  },
+};
 
 export default async function Home() {
   const homeDestinations = destinations.slice(0, 6);
@@ -75,8 +106,43 @@ export default async function Home() {
     },
   ];
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a.replaceAll("\n", " "),
+      },
+    })),
+  };
+
+  const localBusinessJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: "True Ceylon Travels",
+    url: "https://trueceylontravels.com",
+    image: "https://trueceylontravels.com/images/campaign/sri-lanka-grid.png",
+    telephone: "+94 707 366 627",
+    email: "info@trueceylontravels.com",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "No 142/1 Bandaramawatha Gonahena",
+      addressLocality: "Kadawatha",
+      addressCountry: "LK",
+    },
+    sameAs: [
+      "https://www.facebook.com/Trueceylontravels26?sfnsn=wa&mibextid=RUbZ1f",
+      "https://www.instagram.com/trueceylontravels?utm_source=qr&igsh=dXo0OGh3ZTE5ejF1",
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[var(--color-surface)] mt-[-7px] text-[var(--foreground)]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <HeroCarousel />
       <FeaturedCampaigns />
 
