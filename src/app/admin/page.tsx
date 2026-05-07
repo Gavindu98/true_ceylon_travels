@@ -15,6 +15,10 @@ export default function AdminPage() {
           >
             Sign In
           </Link>
+
+          {/*
+          TODO: Add sign up form
+          */}
           {/*
           <Link
             href="/admin/signup"
