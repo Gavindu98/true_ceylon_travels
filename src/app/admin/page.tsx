@@ -8,7 +8,7 @@ export default function AdminPage() {
         <h1 className="mt-2 text-4xl font-bold">True Ceylon Travels</h1>
         <p className="mt-3 max-w-xl text-slate-600">Continue as admin.</p>
 
-        <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row">
+        <div className="mt-8 flex w-full justify-center">
           <Link
             href="/admin/signin"
             className="inline-flex items-center justify-center rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold !text-white transition hover:bg-[#064e3b]"
