@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "supabase:export": "node scripts/export_supabase_to_sql.mjs",
+    "supabase:export:with-storage": "node scripts/export_supabase_to_sql.mjs --download-storage"
   },
   "dependencies": {
     "@ant-design/icons": "^6.1.1",
