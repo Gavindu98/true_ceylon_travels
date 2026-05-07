@@ -15,7 +15,7 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    image: "/images/cover/ella_cover.png",
+    image: "/images/cover/sigiriya_cover.png",
     badge: "Cultural Triangle",
     title: "Climb Sigiriya and Walk Through Ancient Kingdoms",
     description: "Discover royal history, sacred temples, and authentic village experiences guided by local experts.",
