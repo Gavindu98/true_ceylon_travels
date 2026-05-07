@@ -6,7 +6,6 @@ import {
   InstagramFilled,
   MailOutlined,
   PhoneOutlined,
-  TikTokFilled,
   WhatsAppOutlined,
 } from "@ant-design/icons";
 import SiteHeader from "@/components/site-header";
@@ -151,14 +150,11 @@ export default function RootLayout({
             <div>
               <h4 className="text-sm font-semibold uppercase tracking-wide text-amber-200">Follow Us</h4>
               <div className="mt-3 flex items-center gap-3">
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
+                <a href="https://www.facebook.com/Trueceylontravels26?sfnsn=wa&mibextid=RUbZ1f" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
                   <FacebookFilled />
                 </a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
+                <a href="https://www.instagram.com/trueceylontravels?utm_source=qr&igsh=dXo0OGh3ZTE5ejF1" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
                   <InstagramFilled />
-                </a>
-                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
-                  <TikTokFilled />
                 </a>
               </div>
               <p className="mt-5 text-sm text-slate-300">
@@ -174,7 +170,7 @@ export default function RootLayout({
               <p>© 2026 True Ceylon Travels. All rights reserved.</p>
               <p>
                 Developed by{" "}
-                <a href="https://codeloom.com" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-amber-200">
+                <a href="https://www.codeloom.digital" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-amber-200">
                   CODELOOM
                 </a>
               </p>
