@@ -8,6 +8,7 @@ import {
   PhoneOutlined,
   WhatsAppOutlined,
 } from "@ant-design/icons";
+import GoogleAnalyticsProvider from "@/components/google-analytics";
 import SiteHeader from "@/components/site-header";
 import UiProvider from "@/components/ui-provider";
 import "./globals.css";
@@ -40,11 +41,6 @@ export const metadata: Metadata = {
   ],
   alternates: {
     canonical: "/",
-  },
-  icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
   },
   openGraph: {
     type: "website",
@@ -94,6 +90,7 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} ${notoSerif.variable} h-full antialiased`}
     >
       <body className="min-h-screen flex flex-col bg-[var(--color-surface)] text-[var(--foreground)]">
+        <GoogleAnalyticsProvider />
         <UiProvider>
           <SiteHeader />
           <div className="flex-1 flex flex-col pt-[var(--header-height)]">{children}</div>
