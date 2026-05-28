@@ -25,6 +25,13 @@ const notoSerif = Noto_Serif({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://trueceylontravels.com"),
+  icons: {
+    icon: [
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: "/apple-icon.png",
+  },
   title: {
     default: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
     template: "%s | True Ceylon Travels",
