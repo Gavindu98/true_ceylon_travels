@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
 
+const BASE_URL = "https://trueceylontravels.com";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/admin/", "/api/"],
     },
-    sitemap: "https://true-ceylon-travels.vercel.app/sitemap.xml",
-    host: "https://true-ceylon-travels.vercel.app",
+    sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL,
   };
 }
