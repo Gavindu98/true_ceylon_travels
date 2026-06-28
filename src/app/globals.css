@@ -29,6 +29,26 @@ body {
   line-height: 1.6;
 }
 
+button:not(:disabled),
+[type="button"]:not(:disabled),
+[type="submit"]:not(:disabled),
+[type="reset"]:not(:disabled),
+.ant-btn:not(:disabled),
+.ant-tabs-tab-btn,
+.ant-dropdown-menu-item,
+.ant-select-selector,
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+[type="button"]:disabled,
+[type="submit"]:disabled,
+.ant-btn-disabled,
+.ant-btn:disabled {
+  cursor: not-allowed;
+}
+
 h1,
 h2,
 h3,

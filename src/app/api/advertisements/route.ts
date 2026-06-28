@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
+import { noStoreHeaders, revalidateAdvertisementPages } from "@/lib/advertisements/revalidate";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -12,14 +13,10 @@ export async function GET() {
     .order("created_at", { ascending: false });
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500, headers: noStoreHeaders });
   }
 
-  return NextResponse.json(data ?? [], {
-    headers: {
-      "Cache-Control": "public, s-maxage=120, stale-while-revalidate=300",
-    },
-  });
+  return NextResponse.json(data ?? [], { headers: noStoreHeaders });
 }
 
 export async function POST(request: Request) {
@@ -28,11 +25,11 @@ export async function POST(request: Request) {
   const imageUrl = typeof body.image_url === "string" ? body.image_url.trim() : "";
 
   if (!title) {
-    return NextResponse.json({ error: "Title is required." }, { status: 400 });
+    return NextResponse.json({ error: "Title is required." }, { status: 400, headers: noStoreHeaders });
   }
 
   if (!imageUrl) {
-    return NextResponse.json({ error: "Image is required." }, { status: 400 });
+    return NextResponse.json({ error: "Image is required." }, { status: 400, headers: noStoreHeaders });
   }
 
   const supabase = createServiceRoleClient();
@@ -43,8 +40,10 @@ export async function POST(request: Request) {
     .single();
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500, headers: noStoreHeaders });
   }
 
-  return NextResponse.json(data, { status: 201 });
+  revalidateAdvertisementPages();
+
+  return NextResponse.json(data, { status: 201, headers: noStoreHeaders });
 }

@@ -2,7 +2,7 @@ import AdvertisementCards from "@/components/advertisement-cards";
 import type { AdvertisementRecord } from "@/types/advertisement";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
 
-export const revalidate = 120;
+export const dynamic = "force-dynamic";
 
 export default async function HomeAdvertisements() {
   let advertisements: AdvertisementRecord[] = [];

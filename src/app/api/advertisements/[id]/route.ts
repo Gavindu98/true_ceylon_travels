@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
+import { noStoreHeaders, revalidateAdvertisementPages } from "@/lib/advertisements/revalidate";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -38,10 +39,12 @@ export async function PUT(request: Request, { params }: Params) {
     .single();
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500, headers: noStoreHeaders });
   }
 
-  return NextResponse.json(data);
+  revalidateAdvertisementPages();
+
+  return NextResponse.json(data, { headers: noStoreHeaders });
 }
 
 export async function DELETE(_: Request, { params }: Params) {
@@ -51,8 +54,10 @@ export async function DELETE(_: Request, { params }: Params) {
   const { error } = await supabase.from("advertisements").delete().eq("id", Number(id));
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return NextResponse.json({ error: error.message }, { status: 500, headers: noStoreHeaders });
   }
 
-  return NextResponse.json({ success: true });
+  revalidateAdvertisementPages();
+
+  return NextResponse.json({ success: true }, { headers: noStoreHeaders });
 }

@@ -28,7 +28,10 @@ export default function AdminAdvertisementManager() {
   const isEditing = useMemo(() => editingId !== null, [editingId]);
 
   const loadAdvertisements = async () => {
-    const res = await fetch("/api/advertisements", { cache: "no-store" });
+    const res = await fetch("/api/advertisements", {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" },
+    });
     if (!res.ok) return;
     const data: AdvertisementRecord[] = await res.json();
     setAdvertisements(data);
@@ -37,6 +40,13 @@ export default function AdminAdvertisementManager() {
   useEffect(() => {
     void loadAdvertisements();
   }, []);
+
+  const handleTabChange = (key: string) => {
+    setActiveTab(key);
+    if (key === "list") {
+      void loadAdvertisements();
+    }
+  };
 
   const handleFileChange = (file: File | null) => {
     setSelectedImageFile(file);
@@ -111,6 +121,15 @@ export default function AdminAdvertisementManager() {
         return;
       }
 
+      const saved: AdvertisementRecord = await res.json();
+
+      setAdvertisements((prev) => {
+        if (isEditing) {
+          return prev.map((item) => (item.id === saved.id ? saved : item));
+        }
+        return [saved, ...prev.filter((item) => item.id !== saved.id)];
+      });
+
       setForm(initialForm);
       setEditingId(null);
       setSelectedImageFile(null);
@@ -140,6 +159,7 @@ export default function AdminAdvertisementManager() {
   const handleDelete = async (advertisementId: number) => {
     const res = await fetch(`/api/advertisements/${advertisementId}`, { method: "DELETE" });
     if (!res.ok) return;
+    setAdvertisements((prev) => prev.filter((item) => item.id !== advertisementId));
     await loadAdvertisements();
   };
 
@@ -150,7 +170,8 @@ export default function AdminAdvertisementManager() {
       <section className="rounded-2xl bg-white p-6 shadow-sm">
         <Tabs
           activeKey={activeTab}
-          onChange={setActiveTab}
+          onChange={handleTabChange}
+          destroyOnHidden={false}
           items={[
             {
               key: "list",
