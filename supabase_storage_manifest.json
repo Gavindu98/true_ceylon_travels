@@ -6,6 +6,12 @@
     "objects": []
   },
   {
+    "bucket": "advertisements",
+    "public": true,
+    "file_count": 0,
+    "objects": []
+  },
+  {
     "bucket": "feedback_client_pic",
     "public": true,
     "file_count": 0,

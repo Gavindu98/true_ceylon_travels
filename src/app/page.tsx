@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import HeroCarousel from "@/components/hero-carousel";
 import FeaturedCampaigns from "@/components/featured-campaigns";
 import HomeMemories from "@/components/home-memories";
+import HomeAdvertisements from "@/components/home-advertisements";
 import { destinations } from "@/data/destinations";
 import { createServiceRoleClient } from "@/lib/supabase/admin";
 import type { FeedbackRecord } from "@/types/feedback";
@@ -278,6 +279,8 @@ export default async function Home() {
       </section>
 
       <HomeMemories />
+
+      <HomeAdvertisements />
 
       <section className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-3">

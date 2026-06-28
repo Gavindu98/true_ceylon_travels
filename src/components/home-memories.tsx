@@ -25,7 +25,7 @@ export default async function HomeMemories() {
     <section className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-slate-900">Tour Memories</h2>
+          <h2 className="text-3xl font-bold text-slate-900">Experiences with Customers</h2>
           <p className="mt-2 text-slate-600">Real moments with our happy clients from around the world.</p>
         </div>
         <Link

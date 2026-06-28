@@ -4,15 +4,18 @@ import { useEffect, useMemo, useState } from "react";
 import { Tabs } from "antd";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import AdminMemoryManager from "@/components/admin-memory-manager";
+import AdminAdvertisementManager from "@/components/admin-advertisement-manager";
 import AdminContactsList from "@/components/admin-contacts-list";
 import AdminFeedbackManager from "@/components/admin-feedback-manager";
 import AdminTourContentManager from "@/components/admin-tour-content-manager";
+import type { AdvertisementRecord } from "@/types/advertisement";
 import type { ContactRecord } from "@/types/contact";
 import type { FeedbackRecord } from "@/types/feedback";
 import type { MemoryRecord } from "@/types/memory";
 
 type OverviewState = {
   memories: MemoryRecord[];
+  advertisements: AdvertisementRecord[];
   contacts: ContactRecord[];
   feedbacks: FeedbackRecord[];
 };
@@ -20,6 +23,7 @@ type OverviewState = {
 function AdminOverviewStats() {
   const [state, setState] = useState<OverviewState>({
     memories: [],
+    advertisements: [],
     contacts: [],
     feedbacks: [],
   });
@@ -31,8 +35,9 @@ function AdminOverviewStats() {
       setLoading(true);
       setError(null);
       try {
-        const [memoriesRes, contactsRes, feedbackRes] = await Promise.allSettled([
+        const [memoriesRes, advertisementsRes, contactsRes, feedbackRes] = await Promise.allSettled([
           fetch("/api/memories", { cache: "no-store" }),
+          fetch("/api/advertisements", { cache: "no-store" }),
           fetch("/api/contacts", { cache: "no-store" }),
           fetch("/api/feedback", { cache: "no-store" }),
         ]);
@@ -40,6 +45,11 @@ function AdminOverviewStats() {
         const memories =
           memoriesRes.status === "fulfilled" && memoriesRes.value.ok
             ? ((await memoriesRes.value.json()) as MemoryRecord[])
+            : [];
+
+        const advertisements =
+          advertisementsRes.status === "fulfilled" && advertisementsRes.value.ok
+            ? ((await advertisementsRes.value.json()) as AdvertisementRecord[])
             : [];
 
         const contacts =
@@ -52,7 +62,7 @@ function AdminOverviewStats() {
             ? ((await feedbackRes.value.json()) as FeedbackRecord[])
             : [];
 
-        setState({ memories, contacts, feedbacks });
+        setState({ memories, advertisements, contacts, feedbacks });
       } catch {
         setError("Unable to load dashboard stats right now. Please refresh.");
       } finally {
@@ -66,6 +76,7 @@ function AdminOverviewStats() {
   const metrics = useMemo(() => {
     return [
       { key: "memories", label: "Memories", value: state.memories.length, tone: "text-teal-700" },
+      { key: "advertisements", label: "Advertisements", value: state.advertisements.length, tone: "text-emerald-700" },
       { key: "contacts", label: "Contact Inquiries", value: state.contacts.length, tone: "text-amber-700" },
       { key: "feedbacks", label: "Feedback Entries", value: state.feedbacks.length, tone: "text-blue-700" },
     ];
@@ -73,11 +84,18 @@ function AdminOverviewStats() {
 
   const latestContact = state.contacts[0];
   const latestMemory = state.memories[0];
+  const latestAdvertisement = state.advertisements[0];
   const latestFeedback = state.feedbacks[0];
   const latestContactText = [latestContact?.name, latestContact?.created_at ? new Date(latestContact.created_at).toLocaleString() : ""]
     .filter(Boolean)
     .join(" - ");
   const latestMemoryText = [latestMemory?.title, latestMemory?.created_at ? new Date(latestMemory.created_at).toLocaleString() : ""]
+    .filter(Boolean)
+    .join(" - ");
+  const latestAdvertisementText = [
+    latestAdvertisement?.title,
+    latestAdvertisement?.created_at ? new Date(latestAdvertisement.created_at).toLocaleString() : "",
+  ]
     .filter(Boolean)
     .join(" - ");
   const latestFeedbackText = [latestFeedback?.title, latestFeedback?.created_at ? new Date(latestFeedback.created_at).toLocaleString() : ""]
@@ -102,7 +120,7 @@ function AdminOverviewStats() {
 
   return (
     <div className="space-y-5">
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {metrics.map((metric) => (
           <article key={metric.key} className="rounded-xl border border-slate-200 bg-[var(--color-surface-container-low)] p-4">
             <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">{metric.label}</p>
@@ -116,6 +134,7 @@ function AdminOverviewStats() {
         <div className="mt-3 space-y-2 text-sm text-slate-700">
           <p>Latest contact: {latestContactText || "-"}</p>
           <p>Latest memory: {latestMemoryText || "-"}</p>
+          <p>Latest advertisement: {latestAdvertisementText || "-"}</p>
           <p>Latest feedback: {latestFeedbackText || "-"}</p>
         </div>
       </div>
@@ -139,6 +158,11 @@ export default function AdminDashboardTabs() {
       key: "memories",
       label: "Memories",
       children: <AdminMemoryManager />,
+    },
+    {
+      key: "advertisements",
+      label: "Advertisements",
+      children: <AdminAdvertisementManager />,
     },
     {
       key: "tour-content",
