@@ -94,10 +94,6 @@ function AdvertisementPreviewModal({
   const imageSrc = advertisement.image_url || "/images/hero-lanka.svg";
   const [displaySize, setDisplaySize] = useState<{ width: number; height: number } | null>(null);
 
-  useEffect(() => {
-    setDisplaySize(null);
-  }, [imageSrc]);
-
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const img = event.currentTarget;
     const { naturalWidth, naturalHeight } = img;
@@ -210,14 +206,14 @@ export default function AdvertisementCards({
               <button
                 type="button"
                 onClick={() => setSelected(advertisement)}
-                className="relative block h-64 w-full cursor-zoom-in text-left"
+                className="relative block aspect-[4/3] w-full cursor-zoom-in bg-[#f7f4ec] text-left"
                 aria-label={`View advertisement: ${advertisement.title}`}
               >
                 <AdvertisementImage
                   src={advertisement.image_url}
                   alt={advertisement.title}
                   fill
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 !text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -225,12 +221,12 @@ export default function AdvertisementCards({
                 </div>
               </button>
             ) : (
-              <div className="relative h-64 w-full">
+              <div className="relative aspect-[4/3] w-full bg-[#f7f4ec]">
                 <AdvertisementImage
                   src={advertisement.image_url}
                   alt={advertisement.title}
                   fill
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  className="h-full w-full object-contain"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="absolute inset-x-0 bottom-0 translate-y-6 p-5 !text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -264,7 +260,7 @@ export default function AdvertisementCards({
         ))}
       </div>
 
-      {selected ? <AdvertisementPreviewModal advertisement={selected} onClose={closePreview} /> : null}
+      {selected ? <AdvertisementPreviewModal key={selected.id} advertisement={selected} onClose={closePreview} /> : null}
     </>
   );
 }

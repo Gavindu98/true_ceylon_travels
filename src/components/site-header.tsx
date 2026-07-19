@@ -3,6 +3,7 @@
 import { CompassOutlined, DownOutlined, MenuOutlined } from "@ant-design/icons";
 import { Button, Drawer, Dropdown, Space } from "antd";
 import type { MenuProps } from "antd";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { dayTours as fallbackDayTours, tourStyles as fallbackTourStyles } from "@/data/nav-tour-data";
@@ -56,8 +57,20 @@ export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-[1000] flex h-[var(--header-height)] items-center border-b border-slate-200/70 bg-[rgba(252,249,242,0.9)] backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="text-lg font-bold tracking-tight text-[var(--color-primary)]">
-          True Ceylon Travels
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2.5 text-lg font-bold tracking-tight text-[var(--color-primary)]"
+          aria-label="True Ceylon Travels home"
+        >
+          <Image
+            src="/icon.png"
+            alt=""
+            width={42}
+            height={42}
+            className="h-10 w-10 rounded-xl object-cover shadow-sm ring-1 ring-[#003527]/10"
+            loading="eager"
+          />
+          <span>True Ceylon Travels</span>
         </Link>
         <nav className="hidden items-center gap-2 text-sm font-medium lg:flex">
           <Dropdown
