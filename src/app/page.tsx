@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import HeroCarousel from "@/components/hero-carousel";
+import HomeIntro from "@/components/home-intro";
 import FeaturedCampaigns from "@/components/featured-campaigns";
 import HomeMemories from "@/components/home-memories";
 import HomeAdvertisements from "@/components/home-advertisements";
@@ -39,8 +40,24 @@ export const metadata: Metadata = {
   },
 };
 
+const HOME_DESTINATION_SLUGS = [
+  "sigiriya-rock-fortress",
+  "yala-safari-adventure",
+  "ella-scenic-highlands",
+  "mirissa-whale-coast",
+  "kandy-heritage-walk",
+  "galle-fort-beaches",
+  "nuwara-eliya-tea-country",
+  "tangalle-south-coast",
+  "anuradhapura-sacred-city",
+  "polonnaruwa-ancient-city",
+  "jaffna-northern-heritage",
+];
+
 export default async function Home() {
-  const homeDestinations = destinations.slice(0, 6);
+  const homeDestinations = HOME_DESTINATION_SLUGS.map((slug) => destinations.find((item) => item.slug === slug)).filter(
+    (item): item is (typeof destinations)[number] => Boolean(item),
+  );
 
   const stats = [
     { label: "Happy Travelers", value: "1,000+", icon: "😊", note: "Trusted by global guests" },
@@ -145,6 +162,7 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <HeroCarousel />
+      <HomeIntro />
       <FeaturedCampaigns />
 
       <section id="destinations" className="mx-auto max-w-6xl px-6 py-10 lg:px-8">

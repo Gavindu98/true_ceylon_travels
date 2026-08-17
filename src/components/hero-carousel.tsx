@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 
 type Slide = {
   image: string;
+  alt: string;
+  imagePosition: string;
   badge: string;
   title: string;
   description: string;
@@ -19,7 +21,9 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    image: "/images/cover/classic-escape-hero.webp",
+    image: "/images/cover/classic-escape-sigiriya.jpg",
+    alt: "Sigiriya Rock Fortress rising above paddy fields at golden hour",
+    imagePosition: "object-[center_42%]",
     badge: "6-day private journey",
     title: "Sri Lanka’s Timeless Icons in One Classic Escape",
     description: "Ancient wonders, tea country, river life, and a relaxing beach finale—thoughtfully paced for first-time visitors.",
@@ -34,7 +38,9 @@ const slides: Slide[] = [
     ],
   },
   {
-    image: "/images/cover/splendor-tour-hero.webp",
+    image: "/images/cover/splendor-tour-beach.jpg",
+    alt: "Aerial view of a crescent south-coast bay with turquoise water and fishing boats",
+    imagePosition: "object-[center_38%]",
     badge: "7-day private journey",
     title: "From Misty Highlands to the Wild South",
     description: "Walk Ella’s famous trails, search for leopards in Yala, and finish beside the Indian Ocean in Mirissa.",
@@ -44,7 +50,9 @@ const slides: Slide[] = [
     smartFlow: ["Downhill scenic drive from Ella to Yala", "No backtracking"],
   },
   {
-    image: "/images/cover/grand-splendor-hero.webp",
+    image: "/images/cover/grand-splendor-galle.jpg",
+    alt: "Aerial view of Galle Fort lighthouse, Meeran Mosque, and the Indian Ocean at sunset",
+    imagePosition: "object-[28%_36%]",
     badge: "8-day private journey",
     title: "Ancient Capitals, Scenic Rails, and Coastal Stories",
     description: "Travel from Sri Lanka’s sacred heritage sites through the green highlands to an unforgettable Galle Fort sunset.",
@@ -53,7 +61,9 @@ const slides: Slide[] = [
     highlights: ["Ancient ruins & temples", "Scenic train journey", "Dutch Fort sunset", "Beach & history combination"],
   },
   {
-    image: "/images/cover/witness-beauty-hero.webp",
+    image: "/images/cover/witness-beauty-kandy.jpg",
+    alt: "Colonial Queen’s Hotel in Kandy with tuk-tuks at a busy street corner",
+    imagePosition: "object-[center_32%]",
     badge: "9-day private journey",
     title: "Witness Every Side of Sri Lanka’s Beauty",
     description: "A complete island experience blending cool hill country, iconic viewpoints, thrilling wildlife, and tropical beaches.",
@@ -62,7 +72,9 @@ const slides: Slide[] = [
     highlights: ["Full hill-country experience", "Safari & beach combination", "Iconic photo stops throughout the route"],
   },
   {
-    image: "/images/cover/nature-safari-hero.webp",
+    image: "/images/cover/nature-safari-elephants.jpg",
+    alt: "Herd of Asian elephants walking along a riverbank in Sri Lanka",
+    imagePosition: "object-[center_78%]",
     badge: "12-day private journey",
     title: "Go Deeper into Sri Lanka’s Wild Heart",
     description: "A nature-first journey through three national parks, rich birdlife, remote landscapes, and the tranquil Tangalle coast.",
@@ -123,11 +135,12 @@ export default function HeroCarousel() {
       <Image
         key={currentSlide.image}
         src={currentSlide.image}
-        alt=""
+        alt={currentSlide.alt}
         fill
+        priority={activeIndex === 0}
         fetchPriority={activeIndex === 0 ? "high" : "auto"}
         sizes="100vw"
-        className="object-cover"
+        className={`object-cover ${currentSlide.imagePosition}`}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/35" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/20" />

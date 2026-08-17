@@ -8,9 +8,11 @@ import {
   PhoneOutlined,
   WhatsAppOutlined,
 } from "@ant-design/icons";
+import BrandLogo from "@/components/brand-logo";
 import GoogleAnalyticsProvider from "@/components/google-analytics";
 import SiteHeader from "@/components/site-header";
 import UiProvider from "@/components/ui-provider";
+import WhatsAppQuoteButton from "@/components/whatsapp-quote-button";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -101,10 +103,11 @@ export default function RootLayout({
         <UiProvider>
           <SiteHeader />
           <div className="flex-1 flex flex-col pt-[var(--header-height)]">{children}</div>
+          <WhatsAppQuoteButton />
           <footer className="border-t border-slate-800/80 bg-gradient-to-br from-slate-950 via-slate-900 to-[#0a3f36] text-slate-200">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-4 lg:px-8">
             <div>
-              <h3 className="text-xl font-bold text-white">True Ceylon Travels</h3>
+              <BrandLogo variant="light" />
               <p className="mt-3 text-sm text-slate-300">
                 Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.
               </p>
@@ -170,7 +173,7 @@ export default function RootLayout({
           </div>
 
           <div className="border-t border-slate-800">
-            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-4 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-4 pb-24 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:pb-4 lg:px-8">
               <p>© 2026 True Ceylon Travels. All rights reserved.</p>
               <p>
                 Developed by{" "}
