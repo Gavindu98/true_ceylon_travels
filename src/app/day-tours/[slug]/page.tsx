@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import PageHero from "@/components/page-hero";
+import { resolveDayTourHero } from "@/lib/tour-heroes";
 import { getTourContentData } from "@/lib/tour-content";
 
 type DayTourDetailPageProps = {
@@ -17,18 +19,17 @@ export default async function DayTourDetailPage({ params }: DayTourDetailPagePro
     notFound();
   }
 
+  const heroImage = resolveDayTourHero(tour.slug, tour.coverImageUrl);
+
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section
-        className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white"
-        style={tour.coverImageUrl ? { backgroundImage: `linear-gradient(rgba(8,47,43,0.62), rgba(8,47,43,0.62)), url(${tour.coverImageUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
-      >
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+      <PageHero imageSrc={heroImage} imageAlt={`${tour.title} in Sri Lanka`}>
+        <div>
           <p className="text-xs uppercase tracking-[0.08em] text-teal-100">Day Tour</p>
-          <h1 className="mt-2 text-4xl font-bold sm:text-5xl">{tour.title}</h1>
+          <h1 className="mt-2 text-4xl font-bold text-white sm:text-5xl">{tour.title}</h1>
           <p className="mt-4 max-w-2xl text-teal-50">{tour.description}</p>
         </div>
-      </section>
+      </PageHero>
 
       <section className="mx-auto max-w-4xl px-6 py-12 lg:px-8">
         <article className="space-y-6 rounded-3xl bg-white p-8 shadow-sm ring-1 ring-[#d7e4e4] sm:p-10">

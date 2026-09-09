@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import BrandLogo from "@/components/brand-logo";
 import { dayTours as fallbackDayTours, tourStyles as fallbackTourStyles } from "@/data/nav-tour-data";
+import { honeymoonTrips } from "@/data/honeymoon-trips";
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -54,12 +55,22 @@ export default function SiteHeader() {
     ),
   }));
 
+  const honeymoonItems: MenuProps["items"] = honeymoonTrips.map((item) => ({
+    key: item.slug,
+    label: (
+      <Link href={`/honeymoon-trips/${item.slug}`} className="group block rounded-xl px-1 py-1">
+        <p className="text-sm font-semibold text-slate-800 transition-colors duration-200 group-hover:text-emerald-800">
+          {item.title}
+        </p>
+        <p className="mt-0.5 text-xs text-slate-500">{item.description}</p>
+      </Link>
+    ),
+  }));
+
   return (
     <header className="fixed inset-x-0 top-0 z-[1000] flex h-[var(--header-height)] items-center border-b border-slate-200/70 bg-[rgba(252,249,242,0.9)] backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 lg:px-8">
-        <Link href="/" className="shrink-0" aria-label="True Ceylon Travels home">
-          <BrandLogo />
-        </Link>
+        <BrandLogo />
         <nav className="hidden items-center gap-2 text-sm font-medium lg:flex">
           <Dropdown
             menu={{ items: dayToursItems, className: "!rounded-2xl !p-2", style: { minWidth: 330 } }}
@@ -89,9 +100,28 @@ export default function SiteHeader() {
             </Button>
           </Dropdown>
 
+          <Dropdown
+            menu={{ items: honeymoonItems, className: "!rounded-2xl !p-2", style: { minWidth: 330 } }}
+            trigger={["hover"]}
+            classNames={{ root: "luxury-nav-dropdown" }}
+          >
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
+              <Space>
+                <CompassOutlined />
+                Honeymoon Trips
+                <DownOutlined />
+              </Space>
+            </Button>
+          </Dropdown>
+
           <Link href="/destinations">
             <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
               Destinations
+            </Button>
+          </Link>
+          <Link href="/about">
+            <Button type="text" className="luxury-nav-trigger !h-10 !rounded-full !px-4 !text-[var(--foreground)]">
+              About
             </Button>
           </Link>
           <Link href="/contact">
@@ -157,9 +187,29 @@ export default function SiteHeader() {
             </div>
           </div>
 
+          <div className="space-y-2">
+            <p className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">Honeymoon Trips</p>
+            <div className="flex flex-col gap-2">
+              {honeymoonTrips.map((item) => (
+                <Link
+                  key={item.slug}
+                  href={`/honeymoon-trips/${item.slug}`}
+                  onClick={closeMobile}
+                  className="rounded-xl border border-slate-100 bg-white px-3 py-2 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-emerald-100 hover:bg-emerald-50/40"
+                >
+                  <p className="text-sm font-semibold">{item.title}</p>
+                  <p className="text-xs text-slate-500">{item.description}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2">
             <Link href="/destinations" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
               Destinations
+            </Link>
+            <Link href="/about" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
+              About
             </Link>
             <Link href="/contact" onClick={closeMobile} className="rounded-lg px-3 py-2 hover:bg-slate-100">
               Contact

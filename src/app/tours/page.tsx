@@ -1,4 +1,6 @@
 import Link from "next/link";
+import PageHero from "@/components/page-hero";
+import { DEFAULT_TOURS_HERO } from "@/lib/tour-heroes";
 
 const signatureTours = [
   {
@@ -53,22 +55,22 @@ const signatureTours = [
 ];
 
 const transferTours = [
-  { name: "Airport -> Negombo", price: "LKR 10,000", details: "Private A/C car, professional chauffeur, meet & greet." },
-  { name: "Airport -> Colombo", price: "LKR 12,000", details: "Comfortable private transfer with safe reliable service." },
-  { name: "Airport -> Kadawatha / Wattala / Ja-Ela", price: "LKR 11,000", details: "Fast and reliable private transfer." },
+  { name: "Airport -> Negombo", details: "Private A/C car, professional chauffeur, meet & greet." },
+  { name: "Airport -> Colombo", details: "Comfortable private transfer with safe reliable service." },
+  { name: "Airport -> Kadawatha / Wattala / Ja-Ela", details: "Fast and reliable private transfer." },
 ];
 
 export default function ToursPage() {
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section className="bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white">
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
+      <PageHero imageSrc={DEFAULT_TOURS_HERO} imageAlt="Scenic Sri Lanka tour landscape">
+        <div>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">Tours</h1>
           <p className="mt-4 max-w-2xl text-teal-50">
             True Ceylon Travels signature tour packages designed for comfort, smooth routing, and flexible travel pace.
           </p>
         </div>
-      </section>
+      </PageHero>
 
       <section id="multi-day" className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         <h2 className="text-3xl font-bold">Signature Tour Packages</h2>
@@ -101,13 +103,12 @@ export default function ToursPage() {
         </div>
       </section>
 
-      <section id="day-tours" className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
+      <section id="airport-transfers" className="mx-auto max-w-6xl px-6 py-4 lg:px-8">
         <h2 className="text-3xl font-bold">Airport Transfer Packages</h2>
         <div className="mt-6 grid gap-5 md:grid-cols-3">
           {transferTours.map((tour) => (
             <article key={tour.name} className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-[#d7e4e4]">
               <h3 className="text-xl font-semibold">{tour.name}</h3>
-              <p className="mt-2 text-sm font-semibold text-[var(--color-secondary)]">{tour.price}</p>
               <p className="mt-3 text-sm text-slate-600">{tour.details}</p>
             </article>
           ))}

@@ -29,10 +29,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://trueceylontravels.com"),
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
-      { url: "/favicon.ico", sizes: "48x48" },
     ],
-    apple: "/apple-icon.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
+    shortcut: "/favicon.ico",
   },
   title: {
     default: "True Ceylon Travels | Private Tours & Airport Transfers in Sri Lanka",
@@ -107,7 +109,7 @@ export default function RootLayout({
           <footer className="border-t border-slate-800/80 bg-gradient-to-br from-slate-950 via-slate-900 to-[#0a3f36] text-slate-200">
           <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 lg:grid-cols-4 lg:px-8">
             <div>
-              <BrandLogo variant="light" />
+              <BrandLogo variant="light" size="lg" />
               <p className="mt-3 text-sm text-slate-300">
                 Luxury airport transfers and private tours in Sri Lanka with comfort-first service, flexible routes, and trusted local expertise.
               </p>
@@ -119,14 +121,28 @@ export default function RootLayout({
               <div className="mt-3 space-y-2 text-sm">
                 <p><Link href="/" className="transition duration-200 hover:text-white">Home</Link></p>
                 <p><Link href="/tours" className="transition duration-200 hover:text-white">Tours</Link></p>
+                <p><Link href="/honeymoon-trips" className="transition duration-200 hover:text-white">Honeymoon Trips</Link></p>
                 <p><Link href="/destinations" className="transition duration-200 hover:text-white">Destinations</Link></p>
+                <p><Link href="/about" className="transition duration-200 hover:text-white">About</Link></p>
                 <p><Link href="/contact" className="transition duration-200 hover:text-white">Contact</Link></p>
               </div>
               <h4 className="mt-6 text-sm font-semibold uppercase tracking-wide text-amber-200">Popular Services</h4>
-              <div className="mt-3 space-y-2 text-sm text-slate-300">
-                <p>Airport Transfers</p>
-                <p>Custom Private Tours</p>
-                <p>Safari & Hill Country Routes</p>
+              <div className="mt-3 space-y-2 text-sm">
+                <p>
+                  <Link href="/tours#airport-transfers" className="transition duration-200 hover:text-white">
+                    Airport Transfers
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/custom-tours" className="transition duration-200 hover:text-white">
+                    Custom Private Tours
+                  </Link>
+                </p>
+                <p>
+                  <Link href="/tours/categories" className="transition duration-200 hover:text-white">
+                    Safari &amp; Hill Country Routes
+                  </Link>
+                </p>
               </div>
             </div>
 
@@ -139,8 +155,8 @@ export default function RootLayout({
                   </a>
                 </p>
                 <p>
-                  <a href="mailto:info@trueceylontravels.com" className="inline-flex items-center gap-2 transition duration-200 hover:text-white">
-                    <MailOutlined /> info@trueceylontravels.com
+                  <a href="mailto:trueceylontravels@gmail.com" className="inline-flex items-center gap-2 transition duration-200 hover:text-white">
+                    <MailOutlined /> trueceylontravels@gmail.com
                   </a>
                 </p>
                 <p>
@@ -162,6 +178,17 @@ export default function RootLayout({
                 </a>
                 <a href="https://www.instagram.com/trueceylontravels?utm_source=qr&igsh=dXo0OGh3ZTE5ejF1" target="_blank" rel="noopener noreferrer" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white">
                   <InstagramFilled />
+                </a>
+                <a
+                  href="https://www.tripadvisor.com/UserReviewEdit-g293962-d34469458-True_Ceylon_Travels-Colombo_Western_Province.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Review us on Tripadvisor"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20 hover:text-white"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+                    <path d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.922 2.897a3.2 3.2 0 0 0 3.08 4.712 3.226 3.226 0 0 0 3.2-3.233 3.2 3.2 0 0 0-.012-.263 6.98 6.98 0 0 0 7.608 0 3.3 3.3 0 0 0-.012.262 3.226 3.226 0 0 0 3.2 3.233 3.2 3.2 0 0 0 3.08-4.712L24 6.649h-4.355a14.75 14.75 0 0 0-7.64-2.353zm-3.2 5.07a2.15 2.15 0 1 1 0 4.297 2.15 2.15 0 0 1 0-4.297zm6.4 0a2.15 2.15 0 1 1 0 4.297 2.15 2.15 0 1 1 0-4.297z" />
+                  </svg>
                 </a>
               </div>
               <p className="mt-5 text-sm text-slate-300">

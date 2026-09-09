@@ -12,7 +12,7 @@
   --color-surface-container-low: #f6f2e9;
   --color-surface-container-lowest: #fffcf6;
   --color-outline-variant: #7a7a6e;
-  --header-height: 72px;
+  --header-height: 80px;
 }
 
 @theme inline {

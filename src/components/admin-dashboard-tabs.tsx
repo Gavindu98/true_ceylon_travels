@@ -8,6 +8,7 @@ import AdminAdvertisementManager from "@/components/admin-advertisement-manager"
 import AdminContactsList from "@/components/admin-contacts-list";
 import AdminFeedbackManager from "@/components/admin-feedback-manager";
 import AdminTourContentManager from "@/components/admin-tour-content-manager";
+import AdminTravelPackageManager from "@/components/admin-travel-package-manager";
 import type { AdvertisementRecord } from "@/types/advertisement";
 import type { ContactRecord } from "@/types/contact";
 import type { FeedbackRecord } from "@/types/feedback";
@@ -168,6 +169,11 @@ export default function AdminDashboardTabs() {
       key: "tour-content",
       label: "Tour Content",
       children: <AdminTourContentManager />,
+    },
+    {
+      key: "travel-packages",
+      label: "Travel Packages",
+      children: <AdminTravelPackageManager />,
     },
     {
       key: "contacts",

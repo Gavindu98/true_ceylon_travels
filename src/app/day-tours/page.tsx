@@ -1,23 +1,23 @@
 import Link from "next/link";
+import PageHero from "@/components/page-hero";
 import { getTourContentData } from "@/lib/tour-content";
+import { DEFAULT_DAY_TOURS_HERO, resolvePageCoverHero } from "@/lib/tour-heroes";
 
 export default async function DayToursPage() {
   const { dayTours, covers } = await getTourContentData();
   const cover = covers.find((item) => item.page_key === "day-tours");
+  const heroImage = resolvePageCoverHero(cover?.image_url, DEFAULT_DAY_TOURS_HERO);
 
   return (
     <main className="min-h-screen bg-[var(--color-surface)] text-[var(--foreground)]">
-      <section
-        className="relative overflow-hidden bg-gradient-to-r from-[#0f766e] to-[#115e59] text-white"
-        style={cover?.image_url ? { backgroundImage: `linear-gradient(rgba(8,47,43,0.62), rgba(8,47,43,0.62)), url(${cover.image_url})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
-      >
-        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-          <h1 className="text-4xl font-bold sm:text-5xl">{cover?.title || "Day Tours"}</h1>
+      <PageHero imageSrc={heroImage} imageAlt="Sri Lanka day tour safari landscape">
+        <div>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">{cover?.title || "Day Tours"}</h1>
           <p className="mt-4 max-w-2xl text-teal-50">
             {cover?.subtitle || "Choose from our most popular one-day experiences across Sri Lanka."}
           </p>
         </div>
-      </section>
+      </PageHero>
 
       <section className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

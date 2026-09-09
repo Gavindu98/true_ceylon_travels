@@ -84,7 +84,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="font-semibold text-[#003527]">Email</p>
-                <a href="mailto:info@trueceylontravels.com" className="break-all transition hover:text-[#0f766e]">info@trueceylontravels.com</a>
+                <a href="mailto:trueceylontravels@gmail.com" className="break-all transition hover:text-[#0f766e]">trueceylontravels@gmail.com</a>
               </div>
             </div>
           </div>

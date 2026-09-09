@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { createServiceRoleClient } from "@/lib/supabase/admin";
+import type { TravelPackageRecord, TravelPackageSection } from "@/types/travel-package";
 
 type CampaignItem = {
   image: string;
@@ -8,7 +10,7 @@ type CampaignItem = {
   href: string;
 };
 
-const packageItems: CampaignItem[] = [
+const fallbackPackageItems: CampaignItem[] = [
   {
     image: "/images/campaign/ten-day-journey.png",
     title: "10-Day Sri Lanka Journey",
@@ -29,7 +31,7 @@ const packageItems: CampaignItem[] = [
   },
 ];
 
-const destinationItems: CampaignItem[] = [
+const fallbackDestinationItems: CampaignItem[] = [
   {
     image: "/images/campaign/arugam-bay.png",
     title: "Arugam Bay",
@@ -50,7 +52,46 @@ const destinationItems: CampaignItem[] = [
   },
 ];
 
-export default function FeaturedCampaigns() {
+function toCampaignItem(item: TravelPackageRecord): CampaignItem {
+  return {
+    image: item.image_url,
+    title: item.title,
+    subtitle: item.content,
+    href: item.href || "/contact",
+  };
+}
+
+function itemsForSection(
+  records: TravelPackageRecord[],
+  section: TravelPackageSection,
+  fallback: CampaignItem[],
+  fromDb: boolean,
+) {
+  const matched = records.filter((item) => item.section === section).map(toCampaignItem);
+  return fromDb ? matched : fallback;
+}
+
+async function loadTravelPackages(): Promise<{ records: TravelPackageRecord[]; fromDb: boolean }> {
+  try {
+    const supabase = createServiceRoleClient();
+    const { data, error } = await supabase
+      .from("travel_packages")
+      .select("*")
+      .order("sort_order", { ascending: true })
+      .order("created_at", { ascending: false });
+
+    if (error || !data) return { records: [], fromDb: false };
+    return { records: data as TravelPackageRecord[], fromDb: true };
+  } catch {
+    return { records: [], fromDb: false };
+  }
+}
+
+export default async function FeaturedCampaigns() {
+  const { records, fromDb } = await loadTravelPackages();
+  const packageItems = itemsForSection(records, "signature", fallbackPackageItems, fromDb);
+  const destinationItems = itemsForSection(records, "coastal", fallbackDestinationItems, fromDb);
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-10 lg:px-8">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
@@ -70,23 +111,27 @@ export default function FeaturedCampaigns() {
       </div>
 
       <div className="space-y-8">
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Signature packages</p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {packageItems.map((item) => (
-              <CampaignCard key={item.title} item={item} />
-            ))}
+        {packageItems.length > 0 ? (
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Signature packages</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {packageItems.map((item) => (
+                <CampaignCard key={`${item.href}-${item.title}`} item={item} />
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Coastal escapes</p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {destinationItems.map((item) => (
-              <CampaignCard key={item.title} item={item} />
-            ))}
+        {destinationItems.length > 0 ? (
+          <div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">Coastal escapes</p>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {destinationItems.map((item) => (
+                <CampaignCard key={`${item.href}-${item.title}`} item={item} />
+              ))}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         <article className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4] lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
           <div className="relative min-h-72 bg-[#0b1f1c]">
@@ -117,11 +162,18 @@ export default function FeaturedCampaigns() {
 }
 
 function CampaignCard({ item }: { item: CampaignItem }) {
+  const isLocal = item.image.startsWith("/");
+
   return (
     <article className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-[#d7e4e4] transition hover:-translate-y-0.5 hover:shadow-md">
       <Link href={item.href} className="block">
         <div className="relative aspect-square w-full bg-[#0b1f1c]">
-          <Image src={item.image} alt={item.title} fill className="object-cover" />
+          {isLocal ? (
+            <Image src={item.image} alt={item.title} fill className="object-cover" />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={item.image} alt={item.title} className="absolute inset-0 h-full w-full object-cover" loading="lazy" referrerPolicy="no-referrer" />
+          )}
         </div>
         <div className="p-5">
           <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>

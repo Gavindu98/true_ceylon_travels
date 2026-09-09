@@ -144,7 +144,7 @@ export default async function Home() {
     url: "https://trueceylontravels.com",
     image: "https://trueceylontravels.com/images/campaign/sri-lanka-grid.png",
     telephone: "+94 707 366 627",
-    email: "info@trueceylontravels.com",
+    email: "trueceylontravels@gmail.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: "No 142/1 Bandaramawatha Gonahena",
@@ -154,6 +154,7 @@ export default async function Home() {
     sameAs: [
       "https://www.facebook.com/Trueceylontravels26?sfnsn=wa&mibextid=RUbZ1f",
       "https://www.instagram.com/trueceylontravels?utm_source=qr&igsh=dXo0OGh3ZTE5ejF1",
+      "https://www.tripadvisor.com/UserReviewEdit-g293962-d34469458-True_Ceylon_Travels-Colombo_Western_Province.html",
     ],
   };
 
@@ -401,7 +402,7 @@ export default async function Home() {
 
               <div className="mt-7 flex flex-wrap gap-3 text-sm font-semibold">
                 <Link
-                  href="https://www.tripadvisor.com/Profile/Dream66288453201"
+                  href="https://www.tripadvisor.com/UserReviewEdit-g293962-d34469458-True_Ceylon_Travels-Colombo_Western_Province.html"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#34e0a1] px-6 py-3 text-[#03352e] transition hover:brightness-95"
@@ -417,11 +418,25 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-sm sm:p-6">
-              <div className="relative mx-auto h-44 w-full max-w-md">
-                <Image src="/images/tripadvisor-srilanka-tours.webp" alt="Tripadvisor True Ceylon Travels" fill className="object-contain" />
-              </div>
-              <p className="mt-4 text-center text-sm text-white/90">Your feedback helps travelers make better choices.</p>
+            <div className="rounded-2xl border border-white/20 bg-white p-4 shadow-lg sm:p-6">
+              <Link
+                href="https://www.tripadvisor.com/UserReviewEdit-g293962-d34469458-True_Ceylon_Travels-Colombo_Western_Province.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative mx-auto block aspect-[3/4] w-full max-w-xs"
+                aria-label="Open Tripadvisor to leave a review for True Ceylon Travels"
+              >
+                <Image
+                  src="/images/tripadvisor-review-qr.jpg"
+                  alt="Scan to leave a Tripadvisor review for True Ceylon Travels"
+                  fill
+                  sizes="320px"
+                  className="object-contain"
+                />
+              </Link>
+              <p className="mt-4 text-center text-sm text-slate-700">
+                Scan the QR code or tap Write a Review to share your experience on Tripadvisor.
+              </p>
             </div>
           </div>
         </div>
